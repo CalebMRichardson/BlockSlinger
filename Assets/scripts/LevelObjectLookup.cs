@@ -33,4 +33,12 @@ public static class LevelObjectLookup
     public const string GATE_CLOSED_LEFT_PATH                 = "prefabs/walls/gateClosedLeft";
     public const int GATE_CLOSED_RIGHT                        = 451;
     public const string GATE_CLOSED_RIGHT_PATH                = "prefabs/walls/gateClosedRight";
+
+
+    // AUDIO
+
+    public const string BLOCK_HIT_ONE_SFX                     = "sound/fx/BlockHitOne";
+    public const string BLOCK_HIT_TWO_SFX                     = "sound/fx/BlockHitTwo";
+    public const string BLOCK_HIT_THREE_SFX                   = "sound/fx/BlockHitThree";     
+    public const string BLOCK_SHOOT_SFX                       = "sound/fx/Swoosh";
 }

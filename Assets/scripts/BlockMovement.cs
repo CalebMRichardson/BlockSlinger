@@ -12,6 +12,7 @@ public class BlockMovement : MonoBehaviour
     public Vector2 moveDirection;
     public enum MoveState { IDLE, TRYING_TO_MOVE, MOVING, CANT_MOVE, IN_PLACE, IN_GOAL}
     public MoveState moveState;
+    private bool moveHappend; 
     private GameObject currentLevel;
     private Level currentLevelScript;
 
@@ -27,6 +28,7 @@ public class BlockMovement : MonoBehaviour
         currentLevel = LevelManager.GetCurrentLevel();
         currentLevelScript = currentLevel.GetComponent<Level>();
         moveState = MoveState.IDLE;
+        moveHappend = false;
     }
 
 
@@ -39,6 +41,7 @@ public class BlockMovement : MonoBehaviour
 
             case MoveState.IDLE:
                 moveDirection = Vector2.zero;
+                moveHappend = false;
                 break;
             case MoveState.TRYING_TO_MOVE:
                 CalculateMove();
@@ -47,6 +50,7 @@ public class BlockMovement : MonoBehaviour
                 Move();
                 break;
             case MoveState.IN_PLACE:
+                block.PlayRandomHitFX();
                 moveState = MoveState.IDLE;
                 break;
             case MoveState.CANT_MOVE:
@@ -95,8 +99,9 @@ public class BlockMovement : MonoBehaviour
 
                         if(moveDirection != Vector2.zero) {
 
-
-
+                            if(moveState == MoveState.IDLE) {
+                                moveState = MoveState.TRYING_TO_MOVE;
+                            }
                         }
 
                         touched = false;
@@ -211,12 +216,17 @@ public class BlockMovement : MonoBehaviour
 
         if(CanMove(nextLocationObj)) {
 
+            if (moveHappend == false) {
+                block.PlayShootFX();
+            }
+
+            moveHappend = true;
+
             int currentX = block.x;
             int currentY = block.y;
             Vector2 currentPos = transform.position;
 
             destination = nextLocationObj.transform.position;
-            moveHappend = true;
 
             block.x += (int)moveDirection.x;
             block.y += (int)moveDirection.y;
@@ -237,20 +247,24 @@ public class BlockMovement : MonoBehaviour
 
         } else {
 
-            moveState = MoveState.CANT_MOVE;
-
+            if(moveHappend) {
+                moveState = MoveState.IN_PLACE;
+                
+            } else {
+                moveState = MoveState.CANT_MOVE;
+            }
         }
-        
     }
 
     private void Move() {
 
-        transform.position = Vector2.MoveTowards(transform.position, destination, .6f);
+        //TODO get rid of magic numbers see if we can speed up the android movement
 
-        if (Vector2.Distance(transform.position, destination) <= .5f) {
+        transform.position = Vector2.MoveTowards(transform.position, destination, .75f);
+
+        if (Vector2.Distance(transform.position, destination) <= .75f) {
             transform.position = destination;
             moveState = MoveState.TRYING_TO_MOVE;
         } 
-
     }
 }

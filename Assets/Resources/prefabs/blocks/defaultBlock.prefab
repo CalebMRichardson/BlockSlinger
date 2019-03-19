@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 750865048831254507}
   - component: {fileID: 849020933774212543}
   - component: {fileID: 9111612116332993971}
+  - component: {fileID: 561083160115981583}
   - component: {fileID: 7014805418689782798}
   m_Layer: 0
   m_Name: defaultBlock
@@ -111,6 +112,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 0}
   moveState: 0
+--- !u!114 &561083160115981583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7890963968877887120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d290a264b316a9f4d84e79d8c5b50b49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &7014805418689782798
 BoxCollider2D:
   m_ObjectHideFlags: 0
