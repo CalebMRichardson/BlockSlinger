@@ -4,15 +4,33 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    [SerializeField]
+    private bool isGoalTile;
+    private bool isGoalTileComplete; 
+    public int x,y;
+
+    private void Start() {
+        isGoalTileComplete = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void SetIsGoalTile(bool _isGoalTile) {
+        isGoalTile = _isGoalTile;
+    }
+
+    public bool IsGoalTile() {
+        return isGoalTile;
+    }
+
+    public void SetXY(int _x, int _y) {
+        x = _x;
+        y = _y;
+    }
+
+    public void SetIsGoalTileComplete(bool _isGoalTileComplete) {
+        isGoalTileComplete = _isGoalTileComplete; 
+    }
+
+    public bool IsGoalTileComplete() {
+        return isGoalTileComplete;
     }
 }

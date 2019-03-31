@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3612073746329971455}
   - component: {fileID: 7528819381658607963}
+  - component: {fileID: 5131259231849748520}
   m_Layer: 0
   m_Name: goalTile
   m_TagString: Untagged
@@ -79,3 +80,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5131259231849748520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8767169817902352659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb0c68c86f6538d4eaf90f26769d4887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

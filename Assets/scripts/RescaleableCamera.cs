@@ -68,22 +68,7 @@ public class RescaleableCamera : MonoBehaviour
 
     // Use this for initialization
     void Start() {
-        RepositionCamera();
         RescaleCamera();
-    }
-
-    void RepositionCamera() {
-
-        GameObject blank = Instantiate(Resources.Load(LevelObjectLookup.BLANK_TILE_PATH)) as GameObject;
-
-        SpriteRenderer sr = blank.GetComponent<SpriteRenderer>();
-
-        float middleX = (sr.size.x * 14) / 2 - sr.size.x / 2;
-        float middleY = (sr.size.y * 10) / 2 - sr.size.y / 2;
-        float z = transform.position.z;
-
-        transform.position = new Vector3(middleX, middleY, z);
-
     }
 
     // Update is called once per frame

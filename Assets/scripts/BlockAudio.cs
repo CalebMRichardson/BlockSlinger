@@ -10,6 +10,7 @@ public class BlockAudio : MonoBehaviour
     private AudioClip hitThreeSFX;
     private AudioClip[] hitSFXCollection; 
     private AudioClip shootSFX;
+    private AudioClip blockInGoalSFX;
 
     private void Start() {
 
@@ -40,13 +41,22 @@ public class BlockAudio : MonoBehaviour
         if(shootSFX == null) {
             Debug.LogError("ShootSound is null. " + LevelObjectLookup.BLOCK_SHOOT_SFX);
         }
+
+        blockInGoalSFX = Resources.Load(LevelObjectLookup.BLOCK_IN_GOAL_SFX) as AudioClip;
+        if (blockInGoalSFX == null) {
+            Debug.LogError("BlockInGoalSFX is null. " + LevelObjectLookup.BLOCK_IN_GOAL_SFX);
+        }
     }
 
-    public AudioClip[] GetHitCollectionFX() {
+    public AudioClip[] GetHitCollectionSFX() {
         return hitSFXCollection;
     }
 
-    public AudioClip GetShootFX() {
+    public AudioClip GetShootSFX() {
         return shootSFX; 
+    }
+
+    public AudioClip GetBlockInGoalSFX() {
+        return blockInGoalSFX;
     }
 }

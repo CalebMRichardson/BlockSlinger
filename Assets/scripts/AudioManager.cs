@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
-{
+public class AudioManager : MonoBehaviour {
     public static AudioSource fxSource;
 
     public static AudioManager instance = null;
@@ -12,9 +11,9 @@ public class AudioManager : MonoBehaviour
     private static float highPitchRange = 1.05f;
 
     private void Awake() {
-        if (instance == null) {
+        if(instance == null) {
             instance = this;
-        } else if (instance != this) {
+        } else if(instance != this) {
             Destroy(gameObject);
         }
 
@@ -29,6 +28,12 @@ public class AudioManager : MonoBehaviour
         fxSource.pitch = randomPitch;
         fxSource.clip = _clip;
         fxSource.Play();
+    }
+
+    public static void PlaySingleAtVolume(AudioClip _clip, float _volume) {
+
+        fxSource.PlayOneShot(_clip, _volume);
+
     }
 
     public static void PlayRandomSfx(AudioClip[] _clips) {

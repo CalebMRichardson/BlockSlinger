@@ -41,4 +41,5 @@ public static class LevelObjectLookup
     public const string BLOCK_HIT_TWO_SFX                     = "sound/fx/BlockHitTwo";
     public const string BLOCK_HIT_THREE_SFX                   = "sound/fx/BlockHitThree";     
     public const string BLOCK_SHOOT_SFX                       = "sound/fx/Swoosh";
+    public const string BLOCK_IN_GOAL_SFX                     = "sound/fx/Party-blower";
 }

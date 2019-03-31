@@ -38,7 +38,7 @@ public class LevelBuilder : MonoBehaviour
 
         currentLevel = _currentLevel;
 
-        GameObject builtLevel = Instantiate(Resources.Load("prefabs/Level")) as GameObject; 
+        GameObject builtLevel = Instantiate(Resources.Load("prefabs/Level")) as GameObject;
 
         if (currentLevel == -1) {
             Debug.LogError("Current Level is -1");
@@ -49,11 +49,22 @@ public class LevelBuilder : MonoBehaviour
         StringBuilder levelKey = new StringBuilder(LEVEL);
         levelKey.Append(currentLevel);
 
+        builtLevel.name = levelKey.ToString();
+
+        string levelExitKey = levelKey + "_EXIT";
+        string levelEnteranceKey = levelKey + "_ENTERANCE";
+
         JArray levelJArray = (JArray)JsonConvert.DeserializeObject(levelData[levelKey.ToString()].ToString());
+
+        JArray levelEnteranceArray = (JArray)JsonConvert.DeserializeObject(levelData[levelEnteranceKey].ToString());
+        JArray levelExitArray = (JArray)JsonConvert.DeserializeObject(levelData[levelExitKey].ToString());
 
         if (levelJArray == null) {
             Debug.LogError("Level Array is Null.");
         }
+
+        int[] levelEnterance = levelEnteranceArray.ToObject<int[ ]>();
+        int[] levelExit = levelExitArray.ToObject<int[ ]>();
 
         int[,] levelArray = levelJArray.ToObject<int[,]>();
         int[,] tileLayerArray = SetArrayLayerData(levelArray, 0);
@@ -64,6 +75,9 @@ public class LevelBuilder : MonoBehaviour
 
         BuildTileLayer(tileLayerArray, ref builtLevel);
         BuildPropLayer(propLayerArray, ref builtLevel);
+
+        Level builtLevelScript = builtLevel.GetComponent<Level>();
+        builtLevelScript.SetEnteranceExit(levelEnterance, levelExit);
        
         return builtLevel;
     }
@@ -89,7 +103,14 @@ public class LevelBuilder : MonoBehaviour
 
                     case LevelObjectLookup.GOAL_TILE:
 
-                        CreateGameObject(LevelObjectLookup.GOAL_TILE_PATH, "GoalTile", j, correctedY, ref _level, true, false, false, false);
+                        GameObject goalTile = CreateGameObject(LevelObjectLookup.GOAL_TILE_PATH, "GoalTile", j, correctedY, ref _level, true, false, false, false);
+                        Tile tileScript = goalTile.GetComponent<Tile>();
+
+                        if (tileScript != null) {
+                            tileScript.SetIsGoalTile(true);
+                        } else {
+                            Debug.LogError(goalTile.name + " doesn't have Component: Tile.cs");
+                        }
 
                         break;
 
@@ -218,9 +239,11 @@ public class LevelBuilder : MonoBehaviour
         SpriteRenderer goSpriteRenderer = go.GetComponent<SpriteRenderer>();
         go.transform.position = new Vector2(goSpriteRenderer.size.x * _x, goSpriteRenderer.size.y * _y);
 
-        if(_isTile)
+        if(_isTile) {
             levelScript.tileLayer[ _y, _x ] = go;
-        else if(_isProp) {
+            Tile tileScript = go.GetComponent<Tile>();
+            tileScript.SetXY(_x, _y);
+        } else if(_isProp) {
             levelScript.propLayer[ _y, _x ] = go;
             Prop prop = go.GetComponent<Prop>();
             prop.SetIsBlank(_isBlank);

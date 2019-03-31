@@ -13,6 +13,7 @@ public class BlockMovement : MonoBehaviour
     public enum MoveState { IDLE, TRYING_TO_MOVE, MOVING, CANT_MOVE, IN_PLACE, IN_GOAL}
     public MoveState moveState;
     private bool moveHappend; 
+    [SerializeField]
     private GameObject currentLevel;
     private Level currentLevelScript;
 
@@ -25,7 +26,7 @@ public class BlockMovement : MonoBehaviour
         initialTouchDownPoint = new Vector3();
         destination = new Vector2();
         touched = false;
-        currentLevel = LevelManager.GetCurrentLevel();
+        currentLevel = transform.parent.gameObject;
         currentLevelScript = currentLevel.GetComponent<Level>();
         moveState = MoveState.IDLE;
         moveHappend = false;
@@ -50,8 +51,18 @@ public class BlockMovement : MonoBehaviour
                 Move();
                 break;
             case MoveState.IN_PLACE:
-                block.PlayRandomHitFX();
-                moveState = MoveState.IDLE;
+                block.PlayRandomHitSFX();
+                if(block.CheckIfInGoal() == true) {
+                    moveState = MoveState.IN_GOAL;
+                } else {
+                    moveState = MoveState.IDLE;
+                }
+                break;
+            case MoveState.IN_GOAL:
+                if(block.GetBlockInGoal() == false) {
+                    block.PlayBlockInGoalSFX();
+                    block.SetBlockInGoal(true);
+                }
                 break;
             case MoveState.CANT_MOVE:
                 moveDirection = Vector2.zero;
@@ -217,7 +228,7 @@ public class BlockMovement : MonoBehaviour
         if(CanMove(nextLocationObj)) {
 
             if (moveHappend == false) {
-                block.PlayShootFX();
+                block.PlayShootSFX();
             }
 
             moveHappend = true;
