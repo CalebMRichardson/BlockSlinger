@@ -222,6 +222,14 @@ public class LevelBuilder : MonoBehaviour
                         }
 
                         break;
+
+                    case LevelObjectLookup.HOLE:
+
+                        GameObject hole = CreateGameObject(LevelObjectLookup.HOLE_PATH, "Hole", j, correctedY, ref _level, false, true, false, false);
+                        Prop holeScript = hole.GetComponent<Prop>();
+                        holeScript.isHole = true;
+
+                        break;
                 }
 
             }

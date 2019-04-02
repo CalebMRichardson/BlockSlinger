@@ -7,7 +7,9 @@ public class Block : Prop
     private BlockAudio blockAudio;
     private GameObject currentLevel;
     private Level currentLevelScript;
-    private bool blockInGoal; 
+    private bool blockInGoal;
+    public Vector2 lastPosition;
+    public Animator animator; 
 
     private void Start() {
         blockAudio = GetComponent<BlockAudio>();
@@ -55,6 +57,14 @@ public class Block : Prop
     }
 
     public bool GetBlockInGoal() {
-        return blockInGoal; 
+        return blockInGoal;
     }
+
+    public void PlayAnimationAndDestroy(string _animation) {
+
+        animator.Play("block_fall");
+
+    }
+
+
 }

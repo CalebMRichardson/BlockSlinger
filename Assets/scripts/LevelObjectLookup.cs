@@ -34,6 +34,10 @@ public static class LevelObjectLookup
     public const int GATE_CLOSED_RIGHT                        = 451;
     public const string GATE_CLOSED_RIGHT_PATH                = "prefabs/walls/gateClosedRight";
 
+    // OBSTACLE
+
+    public const int HOLE                                     = 500;
+    public const string HOLE_PATH                             = "prefabs/obstacles/holeTile";
 
     // AUDIO
 
