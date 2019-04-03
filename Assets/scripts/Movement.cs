@@ -7,7 +7,6 @@ public class Movement : MonoBehaviour
     private Block block;
     private bool touched;
     private Vector3 initialTouchDownPoint;
-    private Vector2 destination;
     [SerializeField]
     private Vector2 moveDirection;
     public enum MoveState { IDLE, TRYING_TO_MOVE, MOVING, CANT_MOVE, IN_PLACE, IN_GOAL, FALLING }
@@ -17,7 +16,8 @@ public class Movement : MonoBehaviour
     private Level currentLevelScript;
 
     private float blockMoveSpeed;
-    private float closeEnough; 
+    private float closeEnough;
+    private bool moveHappend; 
 
     private const int LEFT_MOUSE_BUTTON = 0;
 
@@ -26,13 +26,13 @@ public class Movement : MonoBehaviour
 
         block = GetComponent<Block>();
         initialTouchDownPoint = new Vector3();
-        destination = new Vector2();
         touched = false;
         currentLevel = transform.parent.gameObject;
         currentLevelScript = currentLevel.GetComponent<Level>();
         moveState = MoveState.IDLE;
-        blockMoveSpeed = .4f;
+        blockMoveSpeed = 18.0f;
         closeEnough = .04f;
+        moveHappend = false;
     }
 
     private void Update() {
@@ -44,6 +44,7 @@ public class Movement : MonoBehaviour
             case MoveState.IDLE:
                 moveDirection = Vector2.zero;
                 block.lastPosition = transform.position;
+                moveHappend = false;
                 break;
             case MoveState.TRYING_TO_MOVE:
                 CheckMoveDirection(block.x + (int)moveDirection.x, block.y + (int)moveDirection.y);
@@ -52,13 +53,22 @@ public class Movement : MonoBehaviour
                 Move();
                 break;
             case MoveState.IN_PLACE:
-               
+                if(block.CheckIfInGoal()) {
+                    moveState = MoveState.IN_GOAL;
+                } else {
+                    block.PlayRandomHitSFX();
+                    moveState = MoveState.IDLE;
+                }
                 break;
             case MoveState.IN_GOAL:
-                
+                if(block.GetBlockInGoal() == false) {
+                    block.PlayBlockInGoalSFX();
+                    block.SetBlockInGoal(true);
+                }
                 break;
+            
             case MoveState.CANT_MOVE:
-                
+                moveState = MoveState.IDLE;
                 break;
 
             case MoveState.FALLING:
@@ -215,20 +225,29 @@ public class Movement : MonoBehaviour
         Prop testSpotPropScript = testSpot.GetComponent<Prop>();
 
         if (testSpotPropScript != null) {
-            if (testSpotPropScript.isBlank) {
+            if(testSpotPropScript.isBlank) {
                 nextSpot = testSpot;
+                moveHappend = true;
                 CheckMoveDirection(nextX + (int)moveDirection.x, nextY + (int)moveDirection.y);
 
-            } else if (testSpotPropScript.isHole) {
+            } else if(testSpotPropScript.isHole) {
                 nextSpot = testSpot;
+                moveHappend = true;
                 moveState = MoveState.FALLING;
 
+            } else if(testSpotPropScript.isTrap) {
+                
             } else {
 
-                if (nextSpot != null) {
+                if(moveHappend == false) {
+                    moveState = MoveState.CANT_MOVE;
+                }
 
-                    if (nextSpot != null) {
+                if(nextSpot != null) {
+
+                    if(nextSpot != null) {
                         moveState = MoveState.MOVING;
+                        block.PlayShootSFX();
                     }
                 }
             }
@@ -237,27 +256,32 @@ public class Movement : MonoBehaviour
 
     private void Move() {
 
-        transform.position = Vector2.MoveTowards(transform.position, nextSpot.transform.position, blockMoveSpeed);
+        transform.position = Vector2.MoveTowards(transform.position, nextSpot.transform.position, blockMoveSpeed * Time.deltaTime);
 
         if (Vector2.Distance(transform.position, nextSpot.transform.position) <= closeEnough) {
             transform.position = nextSpot.transform.position;
             UpdatePropLayerMove();
-            moveState = MoveState.IDLE;
+            moveState = MoveState.IN_PLACE;
         }
     }
 
     private void MoveToHole() {
-        transform.position = Vector2.MoveTowards(transform.position, nextSpot.transform.position, blockMoveSpeed);
+        transform.position = Vector2.MoveTowards(transform.position, nextSpot.transform.position, blockMoveSpeed * Time.deltaTime);
 
         if(Vector2.Distance(transform.position, nextSpot.transform.position) <= closeEnough) {
             transform.position = nextSpot.transform.position;
-            UpdateBoardOfFall();
+            //UpdateBoardOfFall();
+            UpdateBoardOfLastPosition();
             block.PlayAnimationAndDestroy("block_fall");
         }
     }
 
     private void UpdateBoardOfFall() {
 
+        UpdateBoardOfLastPosition();
+    }
+
+    private void UpdateBoardOfLastPosition() {
         // Update the board about the blocks last position
         GameObject lastBlock = Instantiate(Resources.Load(LevelObjectLookup.BLANK_BLOCK_PATH)) as GameObject;
         Prop lastBlockPropScript = lastBlock.GetComponent<Prop>();
@@ -269,22 +293,11 @@ public class Movement : MonoBehaviour
         lastBlock.transform.parent = transform.parent;
 
         currentLevelScript.propLayer[ lastBlockPropScript.y, lastBlockPropScript.x ] = lastBlock;
-
     }
 
     private void UpdatePropLayerMove() {
 
-        // Update the board about the blocks last position
-        GameObject lastBlock = Instantiate(Resources.Load(LevelObjectLookup.BLANK_BLOCK_PATH)) as GameObject;
-        Prop lastBlockPropScript = lastBlock.GetComponent<Prop>();
-        lastBlockPropScript.isBlank = true;
-        lastBlockPropScript.x = block.x;
-        lastBlockPropScript.y = block.y; 
-        lastBlock.name = "_Blank" + lastBlockPropScript.y + ":" + lastBlockPropScript.x;
-        lastBlock.transform.position = block.lastPosition;
-        lastBlock.transform.parent = transform.parent;
-
-        currentLevelScript.propLayer[ lastBlockPropScript.y, lastBlockPropScript.x ] = lastBlock;
+        UpdateBoardOfLastPosition();
 
         // Update the board about the blocks current position
         Prop nextSpotPropScript = nextSpot.GetComponent<Prop>();
@@ -295,5 +308,4 @@ public class Movement : MonoBehaviour
         block.name = "_Block" + block.y + ":" + block.x; 
 
     }
-
 }

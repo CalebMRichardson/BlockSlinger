@@ -41,7 +41,7 @@ public class Block : Prop
     }
 
     public void PlayBlockInGoalSFX() {
-        AudioManager.PlaySingleAtVolume(blockAudio.GetBlockInGoalSFX(), 0.3f);
+        AudioManager.PlaySingleAtVolume(blockAudio.GetBlockInGoalSFX(), 0.1f);
     }
 
     public GameObject GetCurrentLevel() {
@@ -63,8 +63,6 @@ public class Block : Prop
     public void PlayAnimationAndDestroy(string _animation) {
 
         animator.Play("block_fall");
-
+        Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length + animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
     }
-
-
 }

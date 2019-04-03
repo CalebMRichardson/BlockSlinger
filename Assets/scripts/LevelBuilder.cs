@@ -225,9 +225,48 @@ public class LevelBuilder : MonoBehaviour
 
                     case LevelObjectLookup.HOLE:
 
-                        GameObject hole = CreateGameObject(LevelObjectLookup.HOLE_PATH, "Hole", j, correctedY, ref _level, false, true, false, false);
-                        Prop holeScript = hole.GetComponent<Prop>();
-                        holeScript.isHole = true;
+                        CreateGameObject(LevelObjectLookup.HOLE_PATH, "Hole", j, correctedY, ref _level, false, true, false, false);
+
+                        break;
+
+                    case LevelObjectLookup.TRAP_NORTH:
+
+                        GameObject trapNorth = CreateGameObject(LevelObjectLookup.TRAP_PATH, "Trap", j, correctedY, ref _level, false, true, false, false);
+                        trapNorth.transform.eulerAngles = new Vector3(0, 0, -90);
+                        Trap trapNorthScript = trapNorth.GetComponent<Trap>();
+
+                        trapNorthScript.direction = Vector2.up;
+
+                        break;
+
+                    case LevelObjectLookup.TRAP_EAST:
+
+                        GameObject trapEast = CreateGameObject(LevelObjectLookup.TRAP_PATH, "Trap", j, correctedY, ref _level, false, true, false, false);
+                        trapEast.transform.eulerAngles = new Vector3(0, 0, 180);
+                        Trap trapEastScript = trapEast.GetComponent<Trap>();
+
+                        trapEastScript.direction = Vector2.right;
+
+
+                        break;
+
+                    case LevelObjectLookup.TRAP_SOUTH:
+
+                        GameObject trapSouth = CreateGameObject(LevelObjectLookup.TRAP_PATH, "Trap", j, correctedY, ref _level, false, true, false, false);
+                        trapSouth.transform.eulerAngles = new Vector3(0, 0, 90);
+                        Trap trapSouthScript = trapSouth.GetComponent<Trap>();
+
+                        trapSouthScript.direction = Vector2.down;
+
+
+                        break;
+
+                    case LevelObjectLookup.TRAP_WEST:
+
+                        GameObject trapWest = CreateGameObject(LevelObjectLookup.TRAP_PATH, "Trap", j, correctedY, ref _level, false, true, false, false);
+                        Trap trapWestScript = trapWest.GetComponent<Trap>();
+
+                        trapWestScript.direction = Vector2.left;
 
                         break;
                 }

@@ -37,7 +37,12 @@ public static class LevelObjectLookup
     // OBSTACLE
 
     public const int HOLE                                     = 500;
-    public const string HOLE_PATH                             = "prefabs/obstacles/holeTile";
+    public const string HOLE_PATH                             = "prefabs/obstacles/holeObstacle";
+    public const int TRAP_NORTH                               = 600;
+    public const int TRAP_EAST                                = 601;
+    public const int TRAP_SOUTH                               = 602;
+    public const int TRAP_WEST                                = 603;
+    public const string TRAP_PATH                             = "prefabs/obstacles/trapObstacle";
 
     // AUDIO
 
