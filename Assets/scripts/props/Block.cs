@@ -9,13 +9,15 @@ public class Block : Prop
     private Level currentLevelScript;
     private bool blockInGoal;
     public Vector2 lastPosition;
-    public Animator animator; 
+    public Animator animator;
+    private float destroyAnimationDelay; 
 
     private void Start() {
         blockAudio = GetComponent<BlockAudio>();
         currentLevel = transform.parent.gameObject;
         currentLevelScript = currentLevel.GetComponent<Level>();
         blockInGoal = false;
+        destroyAnimationDelay = 0.5f;
     }
 
     public bool CheckIfInGoal() {
@@ -63,6 +65,7 @@ public class Block : Prop
     public void PlayAnimationAndDestroy(string _animation) {
 
         animator.Play("block_fall");
-        Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length + animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
+        Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length + destroyAnimationDelay);
+        //Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length);
     }
 }

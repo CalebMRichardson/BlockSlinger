@@ -66,7 +66,7 @@ public class Movement : MonoBehaviour
                     block.SetBlockInGoal(true);
                 }
                 break;
-            
+
             case MoveState.CANT_MOVE:
                 moveState = MoveState.IDLE;
                 break;
@@ -209,7 +209,7 @@ public class Movement : MonoBehaviour
         return false;
     }
 
-    GameObject nextSpot; 
+    public GameObject nextSpot; 
 
     private void CheckMoveDirection(int nextX, int nextY) {
 
@@ -236,7 +236,9 @@ public class Movement : MonoBehaviour
                 moveState = MoveState.FALLING;
 
             } else if(testSpotPropScript.isTrap) {
-                
+
+               
+
             } else {
 
                 if(moveHappend == false) {
@@ -270,7 +272,6 @@ public class Movement : MonoBehaviour
 
         if(Vector2.Distance(transform.position, nextSpot.transform.position) <= closeEnough) {
             transform.position = nextSpot.transform.position;
-            //UpdateBoardOfFall();
             UpdateBoardOfLastPosition();
             block.PlayAnimationAndDestroy("block_fall");
         }
@@ -279,6 +280,15 @@ public class Movement : MonoBehaviour
     private void UpdateBoardOfFall() {
 
         UpdateBoardOfLastPosition();
+    }
+
+    private void UpdateBoardOfTrapMove() {
+        UpdateBoardOfLastPosition();
+
+        Prop nextSpotScript = nextSpot.GetComponent<Prop>();
+
+        block.x = nextSpotScript.x;
+        block.y = nextSpotScript.y; 
     }
 
     private void UpdateBoardOfLastPosition() {
@@ -306,6 +316,5 @@ public class Movement : MonoBehaviour
         Destroy(currentLevelScript.propLayer[ block.y, block.x ]);
         currentLevelScript.propLayer[ block.y, block.x ] = block.gameObject;
         block.name = "_Block" + block.y + ":" + block.x; 
-
     }
 }
