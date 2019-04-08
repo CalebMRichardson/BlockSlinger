@@ -21,6 +21,7 @@ public class BlockMovement : MonoBehaviour
     private bool moveHappend;
 
     private const int LEFT_MOUSE_BUTTON = 0;
+    private const int GAME_PAUSED = 0;
 
     [SerializeField]
     private GameObject nextProp;
@@ -48,14 +49,26 @@ public class BlockMovement : MonoBehaviour
         switch(moveState) {
 
             case MoveState.IDLE:
+
                 moveDirection = Vector2.zero;
+
+                if (Time.timeScale == 0) {
+
+                }
+
                 break;
             case MoveState.TRYING_TO_MOVE:
+
                 CheckMoveDirection(block.x + (int)moveDirection.x, block.y + (int)moveDirection.y);
+
                 break;
+
             case MoveState.MOVING:
+
                 Move();
+
                 break;
+
             case MoveState.IN_PLACE:
 
                 Prop nextPropScript = nextProp.GetComponent<Prop>();
@@ -108,6 +121,10 @@ public class BlockMovement : MonoBehaviour
     }
 
     private void HandleInput() {
+
+        if (GameStateManager.gamePaused) {
+            return;
+        }
 
         if(Application.platform == RuntimePlatform.Android)
             GetMobileInput();
@@ -300,9 +317,7 @@ public class BlockMovement : MonoBehaviour
 
         if(currentLevelScript.propLayer[ block.y, block.x ].GetComponent<Prop>().isBlank || currentLevelScript.propLayer[block.y, block.x] == block.gameObject) {
             CreateBlank(block.x, block.y);
-        } else {
-            print(currentLevelScript.propLayer[ block.y, block.x ].name);
-        }
+        } 
 
         block.x = _nextPropScript.x;
         block.y = _nextPropScript.y;

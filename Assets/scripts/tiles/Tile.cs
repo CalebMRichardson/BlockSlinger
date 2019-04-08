@@ -9,6 +9,8 @@ public class Tile : MonoBehaviour
     private bool isGoalTileComplete; 
     public int x,y;
 
+    protected int startingX, startingY; 
+
     private void Start() {
         isGoalTileComplete = false;
     }
@@ -26,6 +28,12 @@ public class Tile : MonoBehaviour
         y = _y;
     }
 
+    // Used to collect info for when the level reloads
+    public void SetStaringInfo(int _startingX, int _startingY) {
+        startingX = _startingX;
+        startingY = _startingY; 
+    }
+
     public void SetIsGoalTileComplete(bool _isGoalTileComplete) {
         isGoalTileComplete = _isGoalTileComplete; 
     }
@@ -33,4 +41,5 @@ public class Tile : MonoBehaviour
     public bool IsGoalTileComplete() {
         return isGoalTileComplete;
     }
+
 }

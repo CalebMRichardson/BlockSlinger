@@ -66,6 +66,5 @@ public class Block : Prop
 
         animator.Play("block_fall");
         Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length + destroyAnimationDelay);
-        //Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length);
     }
 }

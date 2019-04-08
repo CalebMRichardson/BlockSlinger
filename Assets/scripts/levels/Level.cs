@@ -7,6 +7,7 @@ public class Level : MonoBehaviour {
     private const int      LEVEL_DATA_WIDTH  = 14;
     private const int      LEVEL_DATA_HEIGHT = 30;
     private const int      LAYER_HEIGHT = 10;
+    private int levelIndex; 
 
     private int[] levelEnterance;
     private int[] levelExit;
@@ -15,20 +16,28 @@ public class Level : MonoBehaviour {
     public GameObject[,] tileLayer;
     public GameObject[,] propLayer;
     public GameObject[,] decalLayer;
+     
     private List<Tile> goalTiles;
     [SerializeField]
     private bool isCurrentLevel; 
     [SerializeField]
     private bool levelComplete;
+    private Vector2 startingPos; 
 
     private void Awake() {
         tileLayer = new GameObject[ LAYER_HEIGHT, LEVEL_DATA_WIDTH ];
         propLayer = new GameObject[ LAYER_HEIGHT, LEVEL_DATA_WIDTH ];
+
         levelComplete = false;
         goalTiles = new List<Tile>();
     }
 
     private void Start() {
+
+        AddGoalTiles();
+    }
+
+    private void AddGoalTiles() {
         for(int i = 0; i < LAYER_HEIGHT; i++) {
             for(int j = 0; j < LEVEL_DATA_WIDTH; j++) {
                 Tile tileScript = tileLayer[i,j].GetComponent<Tile>();
@@ -37,7 +46,6 @@ public class Level : MonoBehaviour {
                 }
             }
         }
-
     }
 
     private void Update() {
@@ -146,4 +154,15 @@ public class Level : MonoBehaviour {
         camMovement.SetCamPos(deadCenter);
     }
 
+    public void SetLevelIndex(int _levelIndex) {
+        levelIndex = _levelIndex;
+    }
+
+    public int GetLevelIndex() {
+        return levelIndex; 
+    }
+
+    public void SetPosition(Vector2 _pos) {
+        startingPos = _pos;
+    }
 }

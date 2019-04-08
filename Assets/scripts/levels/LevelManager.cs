@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
     private static GameObject nextLevel;
     private LevelBuilder levelBuilder;
     private Level currentLevelScript;
+    private Vector2 currentLevelPos; 
 
     //TODO read from file
     private int currentLevelIndex;
@@ -106,5 +107,23 @@ public class LevelManager : MonoBehaviour
             Debug.Log(currentLevel.name + ": is complete.");
             IncrementCurrentLevel();
         }
+    }
+
+    public void ReloadCurrentLevel() {
+
+        Vector2 pos = currentLevel.transform.position;
+
+        Debug.Log("Reloading: " + currentLevel.name + " index: " + currentLevelScript.GetLevelIndex());
+
+        int currentLevelIndex = currentLevelScript.GetLevelIndex();
+
+        Destroy(currentLevel);
+
+        currentLevel = levelBuilder.Build(currentLevelIndex);
+        currentLevel.transform.parent = transform;
+        currentLevelScript = currentLevel.GetComponent<Level>();
+        currentLevelScript.SetIsCurrentLevel(true);
+        currentLevel.transform.position = pos;
+
     }
 }

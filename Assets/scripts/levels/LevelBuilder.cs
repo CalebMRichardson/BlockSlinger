@@ -78,6 +78,7 @@ public class LevelBuilder : MonoBehaviour
 
         Level builtLevelScript = builtLevel.GetComponent<Level>();
         builtLevelScript.SetEnteranceExit(levelEnterance, levelExit);
+        builtLevelScript.SetLevelIndex(currentLevel);
        
         return builtLevel;
     }
@@ -290,11 +291,13 @@ public class LevelBuilder : MonoBehaviour
             levelScript.tileLayer[ _y, _x ] = go;
             Tile tileScript = go.GetComponent<Tile>();
             tileScript.SetXY(_x, _y);
+            tileScript.SetStaringInfo(_x, _y);
         } else if(_isProp) {
             levelScript.propLayer[ _y, _x ] = go;
             Prop prop = go.GetComponent<Prop>();
             prop.SetIsBlank(_isBlank);
             prop.SetXY(_x, _y);
+            prop.SetStartingInfo(prop.transform.position, _x, _y);
         } else if(_isDecal)
             levelScript.decalLayer[ _y, _x ] = go;
 

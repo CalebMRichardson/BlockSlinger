@@ -8,13 +8,13 @@ public class Prop : MonoBehaviour
     public bool isHole;
     public bool isTrap;
     [SerializeField]
-    public int x, y; 
-    public float width, height;
+    public int x, y;
+
+    protected Vector2 startingPos; 
+    protected int startingX, startingY; 
 
     private void Start() {
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        width = sr.bounds.size.x;
-        height = sr.bounds.size.y;
     }
 
     public void SetIsBlank(bool _isBlank) {
@@ -28,5 +28,11 @@ public class Prop : MonoBehaviour
     public void SetXY(int _x, int _y) {
         x = _x;
         y = _y;
+    }
+
+    public void SetStartingInfo(Vector2 _startingPos, int _startingX, int _startingY) {
+        startingPos = _startingPos;
+        startingX = _startingX;
+        startingY = _startingY; 
     }
 }
