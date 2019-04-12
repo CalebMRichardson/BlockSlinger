@@ -4,28 +4,49 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    private static GameObject currentLevel;
-    private static GameObject lastLevel;
-    private static GameObject nextLevel;
+
+    public static LevelManager instance = null;
+
+    private GameObject currentLevel;
+    private GameObject lastLevel;
+    private GameObject nextLevel;
     private LevelBuilder levelBuilder;
     private Level currentLevelScript;
-    private Vector2 currentLevelPos; 
+    private Vector2 currentLevelPos;
+    [SerializeField]
+    private CameraMovement cameraMovement; 
 
     //TODO read from file
     private int currentLevelIndex;
 
-    private void Start() {
-        
-        //TODO read this from a file
-        currentLevelIndex = 1; 
 
+    private void Awake() {
+        if (instance == null) {
+            instance = this;
+        } else if (instance != null) {
+            Destroy(gameObject);
+        }
+    }
+
+    private void Start() {
+        cameraMovement = Camera.main.GetComponent<CameraMovement>();
+    }
+
+    public void LoadCurrentLevel() {
         levelBuilder = GameObject.Find("LevelBuilder").GetComponent<LevelBuilder>();
         currentLevel = levelBuilder.Build(currentLevelIndex);
-        currentLevel.transform.parent = this.gameObject.transform;
+        currentLevel.transform.parent = gameObject.transform;
         currentLevelScript = currentLevel.GetComponent<Level>();
         currentLevelScript.SetIsCurrentLevel(true);
-        FocusCameraOnCurrentLevel();
+        //FocusCameraOnCurrentLevel();
+        cameraMovement.SetCameraPos(currentLevelScript.GetCameraFocus());
         nextLevel = LoadNextLevel();
+    }
+
+    public void SetCurrentLevelIndex(int _currentLevelIndex) {
+
+        currentLevelIndex = _currentLevelIndex; 
+
     }
 
     private GameObject LoadNextLevel() {
@@ -33,7 +54,7 @@ public class LevelManager : MonoBehaviour
         currentLevelIndex++;
 
         GameObject nextLvl = levelBuilder.Build(currentLevelIndex);
-        nextLvl.transform.parent = this.gameObject.transform;
+        nextLvl.transform.parent = gameObject.transform;
         nextLvl.transform.position = CalculateNextLevelPosition(ref nextLvl);
 
         return nextLvl;
@@ -53,20 +74,42 @@ public class LevelManager : MonoBehaviour
 
         Level nextLvlScript = _nextLvl.GetComponent<Level>();
 
-        float offsetX = _nextLvl.transform.position.x - nextLvlScript.GetLevelEnterancePos().x;
-        float offsetY = _nextLvl.transform.position.y - nextLvlScript.GetLevelEnterancePos().y; 
+        //float offsetX = _nextLvl.transform.position.x - nextLvlScript.GetLevelEnterancePos().x;
+        //float offsetY = _nextLvl.transform.position.y - nextLvlScript.GetLevelEnterancePos().y; 
+
+        float offsetX = 0;
+        float offsetY = 0;
 
         if (nextLvlScript.IsNorthEnterance()) {
+
+            offsetX = _nextLvl.transform.position.x - nextLvlScript.GetLevelEnterancePos(true).x;
+            offsetY = _nextLvl.transform.position.y - nextLvlScript.GetLevelEnterancePos(true).y;
+            nextLevelPos = currentLevelScript.GetLevelExitPos(true);
             offsetY -= 5;
+
         } else if (nextLvlScript.IsSouthEnterance()) {
+            
+            offsetX = _nextLvl.transform.position.x - nextLvlScript.GetLevelEnterancePos(true).x;
+            offsetY = _nextLvl.transform.position.y - nextLvlScript.GetLevelEnterancePos(true).y;
+            nextLevelPos = currentLevelScript.GetLevelExitPos(true);
             offsetY += 5;
+
         } else if (nextLvlScript.IsWestEnterance()) {
-            offsetX += 10;
+            
+            offsetX = _nextLvl.transform.position.x - nextLvlScript.GetLevelEnterancePos(false).x;
+            offsetY = _nextLvl.transform.position.y - nextLvlScript.GetLevelEnterancePos(false).y;
+            nextLevelPos = currentLevelScript.GetLevelExitPos(false);
+            offsetX += 5;
+
         } else if (nextLvlScript.IsEastEnterance()) {
-            offsetX -= 10;
+            
+            offsetX = _nextLvl.transform.position.x - nextLvlScript.GetLevelEnterancePos(false).x;
+            offsetY = _nextLvl.transform.position.y - nextLvlScript.GetLevelEnterancePos(false).y;
+            nextLevelPos = currentLevelScript.GetLevelExitPos(false);
+            offsetX -= 5;
         }
 
-        nextLevelPos = currentLevelScript.GetLevelExitPos();
+        //nextLevelPos = currentLevelScript.GetLevelExitPos();
 
         nextLevelPos.x += offsetX;
         nextLevelPos.y += offsetY; 
@@ -98,13 +141,12 @@ public class LevelManager : MonoBehaviour
 
         Level level = currentLevel.GetComponent<Level>();
 
-        level.SetCameraFocus();
+        cameraMovement.MoveToNextLevel(level.GetCameraFocus());
     }
 
     private void Update() {
         
         if (currentLevelScript.IsLevelComplete()) {
-            Debug.Log(currentLevel.name + ": is complete.");
             IncrementCurrentLevel();
         }
     }

@@ -43,7 +43,7 @@ public class Block : Prop
     }
 
     public void PlayBlockInGoalSFX() {
-        AudioManager.PlaySingleAtVolume(blockAudio.GetBlockInGoalSFX(), 0.1f);
+        //AudioManager.PlaySingleAtVolume(blockAudio.GetBlockInGoalSFX(), 0.1f);
     }
 
     public GameObject GetCurrentLevel() {

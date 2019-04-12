@@ -352,10 +352,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1145212666}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: levelIndex
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: levelSelectCam
+      value: 
+      objectReference: {fileID: 1240354453}
+    - target: {fileID: 0}
+      propertyPath: MainCamera
+      value: 
+      objectReference: {fileID: 1900725048}
+    - target: {fileID: 0}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 1890186973}
+    - target: {fileID: 0}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1900725048}
     - target: {fileID: 977614620309223597, guid: 673a7ed443be48046b3a55c6808e84bb,
         type: 3}
       propertyPath: m_Name
-      value: Level Five Icon
+      value: Level Selection Node Five
       objectReference: {fileID: 0}
     - target: {fileID: 5773820858378325261, guid: 673a7ed443be48046b3a55c6808e84bb,
         type: 3}
@@ -365,7 +385,7 @@ PrefabInstance:
     - target: {fileID: 5773820858378325261, guid: 673a7ed443be48046b3a55c6808e84bb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.4
+      value: 6.37
       objectReference: {fileID: 0}
     - target: {fileID: 5773820858378325261, guid: 673a7ed443be48046b3a55c6808e84bb,
         type: 3}
@@ -415,12 +435,12 @@ PrefabInstance:
     - target: {fileID: 2007033792032686829, guid: 673a7ed443be48046b3a55c6808e84bb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.002
+      value: -1.23
       objectReference: {fileID: 0}
     - target: {fileID: 2007033792032686829, guid: 673a7ed443be48046b3a55c6808e84bb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.173
+      value: 0.58
       objectReference: {fileID: 0}
     - target: {fileID: 2007033792032686829, guid: 673a7ed443be48046b3a55c6808e84bb,
         type: 3}
@@ -447,7 +467,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 673a7ed443be48046b3a55c6808e84bb, type: 3}
 --- !u!1 &293069398
 GameObject:
@@ -565,10 +586,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1145212666}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: levelIndex
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: levelSelectCam
+      value: 
+      objectReference: {fileID: 1240354453}
+    - target: {fileID: 0}
+      propertyPath: MainCamera
+      value: 
+      objectReference: {fileID: 1900725048}
+    - target: {fileID: 0}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 1890186973}
+    - target: {fileID: 0}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1900725048}
     - target: {fileID: 977614620309223597, guid: 673a7ed443be48046b3a55c6808e84bb,
         type: 3}
       propertyPath: m_Name
-      value: Level Three Icon
+      value: Level Selection Node Three
       objectReference: {fileID: 0}
     - target: {fileID: 5773820858378325261, guid: 673a7ed443be48046b3a55c6808e84bb,
         type: 3}
@@ -781,10 +822,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1145212666}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: levelIndex
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: levelSelectCam
+      value: 
+      objectReference: {fileID: 1240354453}
+    - target: {fileID: 0}
+      propertyPath: MainCamera
+      value: 
+      objectReference: {fileID: 1900725048}
+    - target: {fileID: 0}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 1890186973}
+    - target: {fileID: 0}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1900725048}
     - target: {fileID: 977614620309223597, guid: 673a7ed443be48046b3a55c6808e84bb,
         type: 3}
       propertyPath: m_Name
-      value: Level Four Icon
+      value: Level Selection Node Four
       objectReference: {fileID: 0}
     - target: {fileID: 5773820858378325261, guid: 673a7ed443be48046b3a55c6808e84bb,
         type: 3}
@@ -876,8 +937,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 673a7ed443be48046b3a55c6808e84bb, type: 3}
+--- !u!1 &911701322 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 977614620309223597, guid: 673a7ed443be48046b3a55c6808e84bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 275264037}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &911701323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911701322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58bb69f3be7ade3409096127d84998ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelIndex: 5
+  levelSelectionManager: {fileID: 1145212667}
 --- !u!1 &1000846336
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,6 +1092,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 1777274299}
+  levelSelection: {fileID: 0}
+  levelManager: {fileID: 0}
+  gameState: 0
 --- !u!4 &1055294515
 Transform:
   m_ObjectHideFlags: 0
@@ -1033,8 +1118,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1145212666}
+  - component: {fileID: 1145212667}
   m_Layer: 0
-  m_Name: LevelSelection
+  m_Name: LevelSelectionManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1060,6 +1146,41 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1145212667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145212665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32ef1f4534b46fa4a96096b3e31a0e2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelSelectCam: {fileID: 1240354453}
+  mainCamera: {fileID: 1900725048}
+  levelManager: {fileID: 1890186973}
+--- !u!1 &1178047911 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 977614620309223597, guid: 673a7ed443be48046b3a55c6808e84bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 6812329845167237027}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1178047912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178047911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58bb69f3be7ade3409096127d84998ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelIndex: 1
+  levelSelectionManager: {fileID: 1145212667}
 --- !u!1 &1198538998
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,6 +1321,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1239840179 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 977614620309223597, guid: 673a7ed443be48046b3a55c6808e84bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 865725968}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1239840180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239840179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58bb69f3be7ade3409096127d84998ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelIndex: 4
+  levelSelectionManager: {fileID: 1145212667}
 --- !u!1 &1240354451
 GameObject:
   m_ObjectHideFlags: 0
@@ -1210,7 +1351,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1240354454}
   - component: {fileID: 1240354453}
-  - component: {fileID: 1240354452}
   - component: {fileID: 1240354455}
   m_Layer: 0
   m_Name: LevelSelectCamera
@@ -1219,14 +1359,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1240354452
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240354451}
-  m_Enabled: 1
 --- !u!20 &1240354453
 Camera:
   m_ObjectHideFlags: 0
@@ -1524,8 +1656,8 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 0
 --- !u!114 &1890186974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1538,6 +1670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91c4cbbad37c0243a41501cc26cc2df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraMovement: {fileID: 1900725051}
 --- !u!4 &1890186975
 Transform:
   m_ObjectHideFlags: 0
@@ -1565,13 +1698,14 @@ GameObject:
   - component: {fileID: 1900725047}
   - component: {fileID: 1900725050}
   - component: {fileID: 1900725051}
+  - component: {fileID: 1900725052}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &1900725047
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1630,7 +1764,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1900725046}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: -0.05, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1658,6 +1792,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4d65bccdf501354e90be63f9fd0ca69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1900725052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900725046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b31ab29d47c325844b983b4a565e8f6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1972988504
@@ -1737,7 +1883,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1972988507}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1145212667}
+        m_MethodName: LevelSelctionEnable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1972988507
@@ -1777,6 +1934,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1972988504}
   m_CullTransparentMesh: 0
+--- !u!1 &2011788669 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 977614620309223597, guid: 673a7ed443be48046b3a55c6808e84bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 640216760}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2011788670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011788669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58bb69f3be7ade3409096127d84998ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelIndex: 3
+  levelSelectionManager: {fileID: 1145212667}
 --- !u!1001 &2066045850
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1784,10 +1961,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1145212666}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: levelIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: levelSelectCam
+      value: 
+      objectReference: {fileID: 1240354453}
+    - target: {fileID: 0}
+      propertyPath: MainCamera
+      value: 
+      objectReference: {fileID: 1900725048}
+    - target: {fileID: 0}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 1890186973}
+    - target: {fileID: 0}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1900725048}
     - target: {fileID: 977614620309223597, guid: 673a7ed443be48046b3a55c6808e84bb,
         type: 3}
       propertyPath: m_Name
-      value: Level Two Icon
+      value: Level Selection Node Two
       objectReference: {fileID: 0}
     - target: {fileID: 5773820858378325261, guid: 673a7ed443be48046b3a55c6808e84bb,
         type: 3}
@@ -1884,7 +2081,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.003
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 673a7ed443be48046b3a55c6808e84bb, type: 3}
 --- !u!4 &2066045851 stripped
 Transform:
@@ -1892,6 +2090,26 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2066045850}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2098875130 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 977614620309223597, guid: 673a7ed443be48046b3a55c6808e84bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 2066045850}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2098875131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098875130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58bb69f3be7ade3409096127d84998ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelIndex: 2
+  levelSelectionManager: {fileID: 1145212667}
 --- !u!4 &2126744793 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5773820858378325261, guid: 673a7ed443be48046b3a55c6808e84bb,
@@ -1911,10 +2129,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1145212666}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: levelIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: levelSelectCam
+      value: 
+      objectReference: {fileID: 1240354453}
+    - target: {fileID: 0}
+      propertyPath: MainCamera
+      value: 
+      objectReference: {fileID: 1900725048}
+    - target: {fileID: 0}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 1890186973}
+    - target: {fileID: 0}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1900725048}
     - target: {fileID: 977614620309223597, guid: 673a7ed443be48046b3a55c6808e84bb,
         type: 3}
       propertyPath: m_Name
-      value: Level One Icon
+      value: Level Selection Node One
       objectReference: {fileID: 0}
     - target: {fileID: 5773820858378325261, guid: 673a7ed443be48046b3a55c6808e84bb,
         type: 3}
@@ -1924,7 +2162,7 @@ PrefabInstance:
     - target: {fileID: 5773820858378325261, guid: 673a7ed443be48046b3a55c6808e84bb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.87
+      value: -3.86
       objectReference: {fileID: 0}
     - target: {fileID: 5773820858378325261, guid: 673a7ed443be48046b3a55c6808e84bb,
         type: 3}
@@ -1981,5 +2219,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 3.216
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 673a7ed443be48046b3a55c6808e84bb, type: 3}

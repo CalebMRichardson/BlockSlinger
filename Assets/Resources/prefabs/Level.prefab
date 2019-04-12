@@ -43,3 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 361af2c5c5ef1c44b831553ee7c398db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCurrentLevel: 0
+  levelComplete: 0
+  camMovement: {fileID: 0}

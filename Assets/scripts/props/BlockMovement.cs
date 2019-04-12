@@ -8,7 +8,6 @@ public class BlockMovement : MonoBehaviour
     private Block block;
     private bool touched;
     private Vector3 initialTouchDownPoint;
-    [SerializeField]
     private Vector2 moveDirection;
     public enum MoveState { IDLE, TRYING_TO_MOVE, MOVING, CANT_MOVE, IN_PLACE, IN_GOAL, FALLING }
     public MoveState moveState;
@@ -25,7 +24,6 @@ public class BlockMovement : MonoBehaviour
 
     [SerializeField]
     private GameObject nextProp;
-    
 
     private void Start() {
 
@@ -44,6 +42,10 @@ public class BlockMovement : MonoBehaviour
 
     private void Update() {
 
+        if (currentLevelScript.IsCurrentLevel() == false) {
+            return;
+        }
+
         HandleInput();
 
         switch(moveState) {
@@ -52,9 +54,6 @@ public class BlockMovement : MonoBehaviour
 
                 moveDirection = Vector2.zero;
 
-                if (Time.timeScale == 0) {
-
-                }
 
                 break;
             case MoveState.TRYING_TO_MOVE:
@@ -93,6 +92,7 @@ public class BlockMovement : MonoBehaviour
                     UpdateBoardOfMovedBlock(ref nextPropScript);
                     moveState = MoveState.TRYING_TO_MOVE;
                     moveHappend = false;
+                    trapScript.PlayTriggerAnimation("trap_trigger");
                     break;
                 }
 
@@ -123,6 +123,10 @@ public class BlockMovement : MonoBehaviour
     private void HandleInput() {
 
         if (GameStateManager.gamePaused) {
+            return;
+        } 
+
+        if (currentLevelScript.IsBlockMoving()) {
             return;
         }
 

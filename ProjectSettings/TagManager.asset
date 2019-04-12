@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Tiles
+    uniqueID: 3646991883
+    locked: 0
+  - name: Background Props
+    uniqueID: 1950982805
+    locked: 0
+  - name: Background Decals
+    uniqueID: 2046946841
+    locked: 0
+  - name: Foreground Props
+    uniqueID: 4290947827
+    locked: 0
+  - name: Forground Decals
+    uniqueID: 4058797383
+    locked: 0
