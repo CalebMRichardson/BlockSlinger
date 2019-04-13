@@ -14,7 +14,16 @@ public class LevelManager : MonoBehaviour
     private Level currentLevelScript;
     private Vector2 currentLevelPos;
     [SerializeField]
-    private CameraMovement cameraMovement; 
+    private CameraMovement cameraMovement;
+    public static string MAX_LEVEL_INDEX = "MAX_LEVEL_INDEX";
+
+    public GameObject northSouthHall;
+    public GameObject eastWestHall;
+    
+    [SerializeField]
+    private float northSouthHallHeight;
+    [SerializeField]
+    private float eastWestHallWidth; 
 
     //TODO read from file
     private int currentLevelIndex;
@@ -30,6 +39,15 @@ public class LevelManager : MonoBehaviour
 
     private void Start() {
         cameraMovement = Camera.main.GetComponent<CameraMovement>();
+
+        SpriteRenderer sr = northSouthHall.transform.GetChild(0).GetComponent<SpriteRenderer>();
+
+        northSouthHallHeight = sr.size.y;
+
+        sr = eastWestHall.transform.GetChild(0).GetComponent<SpriteRenderer>();
+
+        eastWestHallWidth = sr.size.x; 
+
     }
 
     public void LoadCurrentLevel() {
@@ -86,6 +104,7 @@ public class LevelManager : MonoBehaviour
             offsetY = _nextLvl.transform.position.y - nextLvlScript.GetLevelEnterancePos(true).y;
             nextLevelPos = currentLevelScript.GetLevelExitPos(true);
             offsetY -= 5;
+            //TODO get reference to Hallways and move it by -sr.size.y
 
         } else if (nextLvlScript.IsSouthEnterance()) {
             
@@ -93,6 +112,7 @@ public class LevelManager : MonoBehaviour
             offsetY = _nextLvl.transform.position.y - nextLvlScript.GetLevelEnterancePos(true).y;
             nextLevelPos = currentLevelScript.GetLevelExitPos(true);
             offsetY += 5;
+            //TODO get reference to Hallways and move it by +sr.size.y
 
         } else if (nextLvlScript.IsWestEnterance()) {
             
@@ -148,7 +168,14 @@ public class LevelManager : MonoBehaviour
         
         if (currentLevelScript.IsLevelComplete()) {
             IncrementCurrentLevel();
+            SaveLevelProgress(currentLevelScript.GetLevelIndex());
         }
+    }
+
+    private void SaveLevelProgress(int _levelIndex) {
+
+        PlayerPrefs.SetInt(MAX_LEVEL_INDEX, _levelIndex);
+        PlayerPrefs.Save();
     }
 
     public void ReloadCurrentLevel() {

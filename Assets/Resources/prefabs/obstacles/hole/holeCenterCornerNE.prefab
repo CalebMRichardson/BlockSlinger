@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBlank: 0
-  isHole: 0
+  isHole: 1
   isTrap: 0
   x: 0
   y: 0

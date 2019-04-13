@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 9e9a14af409ce42438f2634df9f4b636
+guid: 78bcb4fc4a70904448d42858d7cc8508
 TextureImporter:
   fileIDToRecycleName:
-    21300000: torchSpriteSheet_0
-    21300002: torchSpriteSheet_1
-    21300004: torchSpriteSheet_2
-    21300006: torchSpriteSheet_3
-    21300008: torchSpriteSheet_4
-    21300010: torchSpriteSheet_5
-    21300012: torchSpriteSheet_6
-    21300014: torchSpriteSheet_7
-    21300016: torchSpriteSheet_8
-    21300018: torchSpriteSheet_9
-    21300020: torchSpriteSheet_10
-    21300022: torchSpriteSheet_11
+    21300000: torchSpriteSheetMainMenu_0
+    21300002: torchSpriteSheetMainMenu_1
+    21300004: torchSpriteSheetMainMenu_2
+    21300006: torchSpriteSheetMainMenu_3
+    21300008: torchSpriteSheetMainMenu_4
+    21300010: torchSpriteSheetMainMenu_5
+    21300012: torchSpriteSheetMainMenu_6
+    21300014: torchSpriteSheetMainMenu_7
+    21300016: torchSpriteSheetMainMenu_8
+    21300018: torchSpriteSheetMainMenu_9
+    21300020: torchSpriteSheetMainMenu_10
+    21300022: torchSpriteSheetMainMenu_11
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -118,7 +118,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: torchSpriteSheet_0
+      name: torchSpriteSheetMainMenu_0
       rect:
         serializedVersion: 2
         x: 0
@@ -132,13 +132,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e3c73bc36a9a3f44b60f70ffae801dc
+      spriteID: 2636b7cb7a72095408f9977ac4e29e10
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: torchSpriteSheet_1
+      name: torchSpriteSheetMainMenu_1
       rect:
         serializedVersion: 2
         x: 128
@@ -152,13 +152,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 960e89d8208a32b4aba5c3391ebcb2d0
+      spriteID: 462d8a6fabb27ee4ea9673dc350c49e4
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: torchSpriteSheet_2
+      name: torchSpriteSheetMainMenu_2
       rect:
         serializedVersion: 2
         x: 256
@@ -172,13 +172,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0447300b022a20f4a9d44c3e4099da4a
+      spriteID: 5bb2a4f1106dd35479e41e77c542e983
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: torchSpriteSheet_3
+      name: torchSpriteSheetMainMenu_3
       rect:
         serializedVersion: 2
         x: 0
@@ -192,13 +192,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fee4b7cab7732c84fbebc85264af118d
+      spriteID: 848c7dbf42182eb4dbeb6ab151f11dd5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: torchSpriteSheet_4
+      name: torchSpriteSheetMainMenu_4
       rect:
         serializedVersion: 2
         x: 128
@@ -212,13 +212,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25b1b39a34cd6ca41acf06d8e2f54688
+      spriteID: a1010755627f4d14da6edfa705d32564
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: torchSpriteSheet_5
+      name: torchSpriteSheetMainMenu_5
       rect:
         serializedVersion: 2
         x: 256
@@ -232,13 +232,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15ec5a551dbd78f4691738e39c1b3ed1
+      spriteID: 4afba86c8ceebc04ab5b197b0403159c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: torchSpriteSheet_6
+      name: torchSpriteSheetMainMenu_6
       rect:
         serializedVersion: 2
         x: 0
@@ -252,13 +252,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7212aeed7c4ddfe4b84312367ad6dd29
+      spriteID: 46d7bf1a5716e244abc50d0458cd25aa
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: torchSpriteSheet_7
+      name: torchSpriteSheetMainMenu_7
       rect:
         serializedVersion: 2
         x: 128
@@ -272,13 +272,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41cf13aaf15094f49ae6c3b5bc6b3115
+      spriteID: 0a73f6fabcaa4c444995f8bb764f4a8e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: torchSpriteSheet_8
+      name: torchSpriteSheetMainMenu_8
       rect:
         serializedVersion: 2
         x: 256
@@ -292,13 +292,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf5c8b3e8f99e0441938f3af040dc032
+      spriteID: 8617eae3bdac8ad4ba9ba604b8fcac87
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: torchSpriteSheet_9
+      name: torchSpriteSheetMainMenu_9
       rect:
         serializedVersion: 2
         x: 0
@@ -312,13 +312,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c78d7c79fdcf894d8ff2ab243460237
+      spriteID: c893c59036a27ec4ebae1ae4b1d46498
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: torchSpriteSheet_10
+      name: torchSpriteSheetMainMenu_10
       rect:
         serializedVersion: 2
         x: 128
@@ -332,13 +332,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 984614f7a4569824f925ce25c0380e69
+      spriteID: 5e11867c3031cb741be878e13afde1ec
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: torchSpriteSheet_11
+      name: torchSpriteSheetMainMenu_11
       rect:
         serializedVersion: 2
         x: 256
@@ -352,7 +352,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21aa4b2ce8155f6468d3746555af2acf
+      spriteID: 21798fe03c2e7c74bb52839c05c6f6b5
       vertices: []
       indices: 
       edges: []
@@ -360,7 +360,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: c7da106c2df302045a6a761080cff90b
+    spriteID: 080c82c83da4f3648a6348a38f5a0f0e
     vertices: []
     indices: 
     edges: []

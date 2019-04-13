@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5909555342900076691}
   - component: {fileID: 93467940567809337}
   m_Layer: 0
-  m_Name: holeConerNW
+  m_Name: holeCornerNW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBlank: 0
-  isHole: 0
+  isHole: 1
   isTrap: 0
   x: 0
   y: 0

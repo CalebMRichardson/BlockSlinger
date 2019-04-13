@@ -960,6 +960,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelIndex: 5
   levelSelectionManager: {fileID: 1145212667}
+  locked: 0
 --- !u!1 &1000846336
 GameObject:
   m_ObjectHideFlags: 0
@@ -1161,6 +1162,12 @@ MonoBehaviour:
   levelSelectCam: {fileID: 1240354453}
   mainCamera: {fileID: 1900725048}
   levelManager: {fileID: 1890186973}
+  levelSelectionNodes:
+  - {fileID: 1178047912}
+  - {fileID: 2098875131}
+  - {fileID: 2011788670}
+  - {fileID: 1239840180}
+  - {fileID: 911701323}
 --- !u!1 &1178047911 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 977614620309223597, guid: 673a7ed443be48046b3a55c6808e84bb,
@@ -1181,6 +1188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelIndex: 1
   levelSelectionManager: {fileID: 1145212667}
+  locked: 0
 --- !u!1 &1198538998
 GameObject:
   m_ObjectHideFlags: 0
@@ -1341,6 +1349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelIndex: 4
   levelSelectionManager: {fileID: 1145212667}
+  locked: 0
 --- !u!1 &1240354451
 GameObject:
   m_ObjectHideFlags: 0
@@ -1671,6 +1680,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraMovement: {fileID: 1900725051}
+  northSouthHall: {fileID: 8559681748901595904, guid: 5e814225d7efc274d9245b53e7b6bad7,
+    type: 3}
+  eastWestHall: {fileID: 7477375508478047546, guid: 34caa7eb0a6cd5b44a67e51a1f68e067,
+    type: 3}
+  northSouthHallHeight: 0
+  eastWestHallWidth: 0
 --- !u!4 &1890186975
 Transform:
   m_ObjectHideFlags: 0
@@ -1954,6 +1969,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelIndex: 3
   levelSelectionManager: {fileID: 1145212667}
+  locked: 0
 --- !u!1001 &2066045850
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2110,6 +2126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelIndex: 2
   levelSelectionManager: {fileID: 1145212667}
+  locked: 0
 --- !u!4 &2126744793 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5773820858378325261, guid: 673a7ed443be48046b3a55c6808e84bb,

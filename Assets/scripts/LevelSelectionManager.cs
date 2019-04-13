@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelSelectionManager : MonoBehaviour
 {
@@ -9,9 +10,27 @@ public class LevelSelectionManager : MonoBehaviour
     [SerializeField]
     private Camera mainCamera;
     [SerializeField]
-    private GameObject levelManager; 
-
+    private GameObject levelManager;
+    private int maxLevel = -1;
     private const int LEFT_MOUSE_BUTTON = 0;
+    public List<LevelSelectionNode> levelSelectionNodes; 
+
+    private void Awake() {
+
+        if (PlayerPrefs.HasKey(LevelManager.MAX_LEVEL_INDEX)) {
+
+            maxLevel = PlayerPrefs.GetInt(LevelManager.MAX_LEVEL_INDEX);
+
+        } else if (!PlayerPrefs.HasKey(LevelManager.MAX_LEVEL_INDEX)) {
+
+            PlayerPrefs.SetInt(LevelManager.MAX_LEVEL_INDEX, 1);
+            maxLevel = PlayerPrefs.GetInt(LevelManager.MAX_LEVEL_INDEX);
+            PlayerPrefs.Save();
+
+        }
+
+        print("Level Index: " + PlayerPrefs.GetInt(LevelManager.MAX_LEVEL_INDEX));
+    }
 
     private void Start() {
         mainCamera.enabled = false;
@@ -39,6 +58,10 @@ public class LevelSelectionManager : MonoBehaviour
 
         foreach (Transform child in levelManager.transform) {
             Destroy(child.gameObject);
+        }
+
+        foreach (LevelSelectionNode lvlNode in levelSelectionNodes) {
+            lvlNode.UpdateLockedStatus();
         }
 
         levelManager.SetActive(false);

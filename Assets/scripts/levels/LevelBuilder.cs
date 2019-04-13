@@ -235,8 +235,6 @@ public class LevelBuilder : MonoBehaviour
 
                         resourcePath = GetHoleType(ref _propLayerArray, j, i);
 
-                        print(resourcePath);
-
                         CreateGameObject(resourcePath, "Hole", j, correctedY, ref _level, false, true, false, false);
 
                         break;
@@ -293,6 +291,11 @@ public class LevelBuilder : MonoBehaviour
         Level levelScript = _level.GetComponent<Level>(); 
 
         GameObject go = Instantiate(Resources.Load(_resourcePath)) as GameObject; 
+
+        if (go == null) {
+            Debug.LogError(_resourcePath); 
+        }
+
         go.name = "_" + _name + _y + ":" + _x;
         go.transform.parent = _level.transform;
         SpriteRenderer goSpriteRenderer = go.GetComponent<SpriteRenderer>();
@@ -345,127 +348,187 @@ public class LevelBuilder : MonoBehaviour
         int bottomLeft = _propLayer[_y + 1, _x - 1];
 
         // Hole Bottom
-        if (top == hole && left != hole && bottom != hole && right != hole) {
+        if(top == hole && left != hole && bottom != hole && right != hole) {
             resourcePath = LevelObjectLookup.HOLE_BOTTOM_PATH;
             return resourcePath;
         }
         // Hole Center
-        else if (top == hole && left == hole && right == hole && bottom == hole && topLeft == hole && topRight == hole && bottomLeft == hole && bottomRight == hole) {
+        else if(top == hole && left == hole && right == hole && bottom == hole && topLeft == hole && topRight == hole && bottomLeft == hole && bottomRight == hole) {
             resourcePath = LevelObjectLookup.HOLE_CENTER_PATH;
             return resourcePath;
         }
         // Hole Center Corners
-        else if (top == hole && left == hole && right == hole && bottom == hole && topLeft != hole && topRight != hole && bottomLeft != hole && bottomRight != hole) {
+        else if(top == hole && left == hole && right == hole && bottom == hole && topLeft != hole && topRight != hole && bottomLeft != hole && bottomRight != hole) {
             resourcePath = LevelObjectLookup.HOLE_CENTER_CORNERS_PATH;
             return resourcePath;
         }
         // Hole East
-        else if (left == hole && bottom == hole && top == hole && right != hole) {
+        else if(left == hole && bottom == hole && top == hole && topLeft == hole && bottomLeft == hole && right != hole) {
             resourcePath = LevelObjectLookup.HOLE_EAST_PATH;
             return resourcePath;
         }
         // Hole Left
-        else if (right == hole && left != hole && top != hole && bottom != hole) {
+        else if(right == hole && left != hole && top != hole && bottom != hole) {
             resourcePath = LevelObjectLookup.HOLE_LEFT_PATH;
             return resourcePath;
         }
         // Hole North
-        else if (left == hole && right == hole && bottom == hole && top != hole) {
+        else if(left == hole && right == hole && bottom == hole && bottomLeft == hole && bottomRight == hole && top != hole) {
             resourcePath = LevelObjectLookup.HOLE_NORTH_PATH;
             return resourcePath;
         }
         // Hole North East
-        else if (left == hole && bottom == hole && bottomLeft == hole && top != hole && right != hole) {
+        else if(left == hole && bottom == hole && bottomLeft == hole && top != hole && right != hole) {
             resourcePath = LevelObjectLookup.HOLE_NORTH_EAST_PATH;
             return resourcePath;
-        } 
+        }
         // Hole North South
-        else if (left == hole && right == hole && top != hole && bottom != hole) {
+        else if(left == hole && right == hole && top != hole && bottom != hole) {
             resourcePath = LevelObjectLookup.HOLE_NORTH_SOUTH_PATH;
             return resourcePath;
         }
         // Hole North West
-        else if (bottom == hole && right == hole && bottomRight == hole && top != hole && left != hole) {
+        else if(bottom == hole && right == hole && bottomRight == hole && top != hole && left != hole) {
             resourcePath = LevelObjectLookup.HOLE_NORTH_WEST_PATH;
             return resourcePath;
         }
         // Hole right
-        else if (left == hole && top != hole && bottom != hole && right != hole) {
+        else if(left == hole && top != hole && bottom != hole && right != hole) {
             resourcePath = LevelObjectLookup.HOLE_RIGHT_PATH;
             return resourcePath;
         }
         // Hole South
-        else if (left == hole && top == hole && right == hole && bottom != hole) {
+        else if(left == hole && top == hole && right == hole && bottom != hole) {
             resourcePath = LevelObjectLookup.HOLE_SOUTH_PATH;
             return resourcePath;
         }
         // Hole South East
-        else if (left == hole && top == hole && topLeft == hole && bottom != hole && right != hole) {
+        else if(left == hole && top == hole && topLeft == hole && bottom != hole && right != hole) {
             resourcePath = LevelObjectLookup.HOLE_SOUTH_EAST_PATH;
             return resourcePath;
         }
         // Hole South West
-        else if (top == hole && right == hole && topRight == hole && left != hole && bottom != hole) {
+        else if(top == hole && right == hole && topRight == hole && left != hole && bottom != hole) {
             resourcePath = LevelObjectLookup.HOLE_SOUTH_WEST_PATH;
             return resourcePath;
         }
         // Hole Top
-        else if (bottom == hole && top != hole && left != hole && right != hole) {
+        else if(bottom == hole && top != hole && left != hole && right != hole) {
             resourcePath = LevelObjectLookup.HOLE_TOP_PATH;
             return resourcePath;
         }
         // Hole West
-        else if (top == hole && right == hole && bottom == hole && left != hole) {
+        else if(top == hole && right == hole && bottom == hole && topRight == hole && bottomRight == hole && left != hole) {
             resourcePath = LevelObjectLookup.HOLE_WEST_PATH;
             return resourcePath;
         }
         // Hole West East
-        else if (top == hole && bottom == hole && left != hole && right != hole) {
+        else if(top == hole && bottom == hole && left != hole && right != hole) {
             resourcePath = LevelObjectLookup.HOLE_WEST_EAST_PATH;
             return resourcePath;
         }
         // Hole Center Corner North East
-        else if (top == hole && right == hole && bottom == hole && left == hole && topRight != hole) {
+        else if(top == hole && right == hole && bottom == hole && left == hole && topRight != hole) {
             resourcePath = LevelObjectLookup.HOLE_CENTER_CORNER_NORTH_EAST;
             return resourcePath;
         }
         // Hole Center Corner North West
-        else if (top == hole && right == hole && bottom == hole && left == hole && topLeft != hole) {
+        else if(top == hole && right == hole && bottom == hole && left == hole && topLeft != hole) {
             resourcePath = LevelObjectLookup.HOLE_CENTER_CORNER_NORTH_WEST;
             return resourcePath;
         }
         // Hole Center Corner South East
-        else if (top == hole && right == hole && bottom == hole && left == hole && bottomRight != hole) {
+        else if(top == hole && right == hole && bottom == hole && left == hole && bottomRight != hole) {
             resourcePath = LevelObjectLookup.HOLE_CENTER_CORNER_SOUTH_EAST;
             return resourcePath;
         }
         // Hole Center Corner South West
-        else if (top == hole && right == hole && bottom == hole && left == hole && bottomLeft != hole) {
+        else if(top == hole && right == hole && bottom == hole && left == hole && bottomLeft != hole) {
             resourcePath = LevelObjectLookup.HOLE_CENTER_CORNER_SOUTH_WEST;
             return resourcePath;
         }
         // Hole Corner North West
-        else if (bottom == hole && right == hole && top != hole && left != hole && bottomRight != hole) {
+        else if(bottom == hole && right == hole && top != hole && left != hole && bottomRight != hole) {
             resourcePath = LevelObjectLookup.HOLE_CORNER_NORTH_WEST;
             return resourcePath;
-        } 
+        }
         // Hole Corner North East
-        else if (left == hole && bottom == hole && top != hole && right != hole && bottomLeft != hole) {
+        else if(left == hole && bottom == hole && top != hole && right != hole && bottomLeft != hole) {
             resourcePath = LevelObjectLookup.HOLE_CORNER_NORTH_EAST;
             return resourcePath;
         }
         // Hole Corner South East
-        else if (top == hole && left == hole && right != hole && bottom != hole && topLeft != hole) {
+        else if(top == hole && left == hole && right != hole && bottom != hole && topLeft != hole) {
             resourcePath = LevelObjectLookup.HOLE_CORNER_SOUTH_EAST;
             return resourcePath;
         }
         // Hole Corner South West
-        else if (top == hole && right == hole && left != hole && bottom != hole && topRight != hole) {
+        else if(top == hole && right == hole && left != hole && bottom != hole && topRight != hole) {
             resourcePath = LevelObjectLookup.HOLE_CORNER_SOUTH_WEST;
             return resourcePath;
         }
+        // Hole East Corner North
+        else if(right == hole && bottom == hole && top != hole && bottomRight != hole) {
+            resourcePath = LevelObjectLookup.HOLE_EAST_CORNER_NORTH;
+            return resourcePath;
+        }
+        // Hole East Corner South
+        else if(top == hole && right == hole && bottom != hole && topRight != hole) {
+            resourcePath = LevelObjectLookup.HOLE_EAST_CORNER_SOUTH;
+            return resourcePath;
+        }
+        // Hole North Corner East
+        else if(top == hole && left == hole && bottomLeft == hole && right != hole && topLeft != hole) {
+            resourcePath = LevelObjectLookup.HOLE_NORTH_CORNER_EAST;
+            return resourcePath;
+        }
+        // Hole North Corner West
+        else if(top == hole && right == hole && bottomRight == hole && left != hole && topRight != hole) {
+            resourcePath = LevelObjectLookup.HOLE_NORTH_CORNER_WEST;
+            return resourcePath;
+        }
+        // Hole North South Corner East
+        else if(top == hole && left == hole && bottom == hole && right != hole && bottomLeft != hole && topLeft != hole) {
+            resourcePath = LevelObjectLookup.HOLE_NORTH_SOUTH_CORNER_EAST;
+            return resourcePath;
+        }
+        // Hole North South Corner West
+        else if(top == hole && right == hole && bottom == hole && left != hole && topRight != hole && bottomRight != hole) {
+            resourcePath = LevelObjectLookup.HOLE_NORTH_SOUTH_CORNER_WEST;
+            return resourcePath;
+        }
+        // Hole South Corner West
+        else if(top == hole && bottom == hole && right == hole && topRight == hole && left != hole && bottomRight != hole) {
+            resourcePath = LevelObjectLookup.HOLE_SOUTH_CORNER_WEST;
+            return resourcePath;
+        }
+        // Hole West Corner North
+        else if(left == hole && bottom == hole && bottomRight == hole && top != hole && bottomLeft != hole) {
+            resourcePath = LevelObjectLookup.HOLE_WEST_CORNER_NORTH;
+            return resourcePath;
+        }
+        // Hole West Corner South 
+        else if(top == hole && left == hole && topLeft != hole && bottom != hole) {
+            resourcePath = LevelObjectLookup.HOLE_WEST_CORNER_SOUTH;
+            return resourcePath;
+        }
+        // Hole West East Corner North
+        else if(left == hole && bottom == hole && right == hole && top != hole && bottomLeft != hole && bottomRight != hole) {
+            resourcePath = LevelObjectLookup.HOLE_WEST_EAST_CORNER_NORTH;
+            return resourcePath;
+        }
+        // Hole West East Corner South
+        else if(top == hole && left == hole && right == hole && bottom != hole && topLeft != hole && topRight != hole) {
+            resourcePath = LevelObjectLookup.HOLE_WEST_EAST_CORNER_SOUTH;
+            return resourcePath;
+        }
+        // Hole South Corner East
+        else if(top == hole && left == hole && bottom == hole && topLeft == hole && right != hole && bottomLeft != hole) {
+            resourcePath = LevelObjectLookup.HOLE_SOUTH_CORNER_EAST;
+            return resourcePath; 
+        }
         // Normal Hole
-        else if (left != hole && right != hole && top != hole && bottom != hole) {
+        else {
             resourcePath = LevelObjectLookup.HOLE_PATH;
             return resourcePath;
         }

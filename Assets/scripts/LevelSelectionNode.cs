@@ -8,18 +8,26 @@ public class LevelSelectionNode : MonoBehaviour
     private int levelIndex = -1;
     [SerializeField]
     LevelSelectionManager levelSelectionManager;
+    [SerializeField]
+    private bool locked;
 
     private const int LEFT_MOUSE_BUTTON = 0;
 
     private void Start() {
+
         if (levelSelectionManager == null) {
             Debug.LogError("LevelSelectionManager.cs is null.");
         }
-    }
 
+        UpdateLockedStatus();
+    }
 
     private void Update() {
         HandleInput();
+    }
+
+    public int GetLevelIndex() {
+        return levelIndex;
     }
 
     private void HandleInput() {
@@ -45,7 +53,11 @@ public class LevelSelectionNode : MonoBehaviour
                     Vector3 touchUpPosition = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, Camera.main.nearClipPlane));
 
                     if(CheckForTouchDownHit(new Vector2(touchUpPosition.x, touchUpPosition.y))) {
-                        levelSelectionManager.StartLevel(levelIndex);
+
+                        if(!locked) {
+                            levelSelectionManager.StartLevel(levelIndex);
+                        }
+
                     }
 
                     break;
@@ -60,9 +72,12 @@ public class LevelSelectionNode : MonoBehaviour
             Vector3 touchUpPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
 
             if(CheckForTouchDownHit(new Vector2(touchUpPosition.x, touchUpPosition.y))) {
-                levelSelectionManager.StartLevel(levelIndex);
-            }
 
+                if(!locked) {
+                    levelSelectionManager.StartLevel(levelIndex);
+                }
+
+            }
         }
     }
 
@@ -81,4 +96,22 @@ public class LevelSelectionNode : MonoBehaviour
         return false;
     }
 
+    public void UpdateLockedStatus() {
+
+        int maxLevel = PlayerPrefs.GetInt(LevelManager.MAX_LEVEL_INDEX);
+
+        if(levelIndex <= maxLevel) {
+            Unlock();
+        } else {
+            Lock();
+        }
+    }
+
+    public void Unlock() {
+        locked = false;
+    }
+
+    public void Lock() {
+        locked = true;
+    }
 }
