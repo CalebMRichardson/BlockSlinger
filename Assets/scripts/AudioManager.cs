@@ -20,7 +20,6 @@ public class AudioManager : MonoBehaviour {
         fxSource = GetComponent<AudioSource>();
     }
 
-
     public static void PlaySingle(AudioClip _clip) {
 
         float volume = Random.Range(.7f, 1f);

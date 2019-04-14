@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -11,10 +12,11 @@ public class GameStateManager : MonoBehaviour
     public GameObject levelSelection;
     public GameObject levelManager; 
     public static bool gamePaused;
+    public Image levelSelectImage;
+    public Button pauseButton;
 
     public enum GameState { PLAY_STATE, LEVEL_SELECTION };
     public GameState gameState;
-
 
     private void Awake() {
         if (instance == null) {
@@ -31,6 +33,14 @@ public class GameStateManager : MonoBehaviour
     }
 
     private void Update() {
+
+        if (gameState == GameState.LEVEL_SELECTION) {
+            levelSelectImage.enabled = true;
+            pauseButton.gameObject.SetActive(false);
+        } else {
+            levelSelectImage.enabled = false;
+            pauseButton.gameObject.SetActive(true);
+        }
 
         if(gameState == GameState.PLAY_STATE) {
 

@@ -17,6 +17,7 @@ public class Level : MonoBehaviour {
     public GameObject[,] propLayer;
     public GameObject[,] decalLayer;
 
+    private List<Gate> exitGates; 
     private List<Tile> goalTiles;
     [SerializeField]
     private List<BlockMovement> blocks;
@@ -27,18 +28,23 @@ public class Level : MonoBehaviour {
     private Vector2 startingPos;
     [SerializeField]
     private bool blockMoving;
+    [SerializeField]
+    private bool lastLevel;
 
     private void Awake() {
         tileLayer = new GameObject[ LAYER_HEIGHT, LEVEL_DATA_WIDTH ];
         propLayer = new GameObject[ LAYER_HEIGHT, LEVEL_DATA_WIDTH ];
+        decalLayer = new GameObject[ LAYER_HEIGHT, LEVEL_DATA_WIDTH ];
 
         levelComplete = false;
         goalTiles = new List<Tile>();
+        exitGates = new List<Gate>();
     }
 
     private void Start() {
         AddGoalTiles();
         AddBlocks();
+        AddExitGates();
         ConnectHallway();
         blockMoving = false;
     }
@@ -88,6 +94,40 @@ public class Level : MonoBehaviour {
         }
     }
 
+    public void PlayGateAnimations() {
+
+        if (exitGates.Count < 2) {
+            print("Return");
+            return;
+        }
+
+        Gate gate1 = exitGates[0];
+        gate1.PlayGateSFX();
+
+        foreach (Gate gate in exitGates) {
+            gate.PlayOpenAnimation(); 
+        }
+    }
+
+    private void AddExitGates() {
+
+        for(int i = 0; i < LAYER_HEIGHT; i++) {
+
+            for(int j = 0; j < LEVEL_DATA_WIDTH; j++) {
+
+                Gate gate = propLayer[i,j].GetComponent<Gate>();
+
+                if( gate != null) {
+
+                    if (gate.exitGate == true) {
+                        exitGates.Add(gate);
+                    }
+
+                }
+            }
+        }
+    }
+
     private void AddBlocks() {
 
         for (int i = 0; i < LAYER_HEIGHT; i++) {
@@ -109,12 +149,19 @@ public class Level : MonoBehaviour {
         bool southExit = levelExit[ 0 ] == 0;
         bool eastExit  = levelExit[ 1 ] == LEVEL_DATA_WIDTH - 1;
         bool westExit  = levelExit[ 1 ] == 0;
+        float northSouthOffset = 0.63f; 
 
         if (northExit || southExit) {
 
             GameObject nHallway = CreateHallway(LevelObjectLookup.HALLWAY_NS_PATH);
             float xPos = GetLevelExitPos(true).x;
             float yPos = GetLevelExitPos(true).y;
+
+            if (northExit) {
+                yPos += northSouthOffset;
+            } else if (southExit) {
+                yPos -= northSouthOffset; 
+            }
 
             nHallway.transform.position = new Vector2(xPos, yPos);
         }
@@ -164,6 +211,10 @@ public class Level : MonoBehaviour {
     public void SetEnteranceExit(int[ ] _levelEnterance, int[ ] _levelExit) {
         levelEnterance = _levelEnterance;
         levelExit = _levelExit;
+
+        if (levelExit[0] == -1 && levelExit[1] == -1) {
+            lastLevel = true;
+        }
     }
 
     public bool IsNorthEnterance() {
@@ -231,7 +282,6 @@ public class Level : MonoBehaviour {
 
         }
 
-
         return levelEnterancePos;
     }
 
@@ -266,5 +316,9 @@ public class Level : MonoBehaviour {
 
     public bool IsBlockMoving() {
         return blockMoving;
+    }
+
+    public bool IsLastLevel() {
+        return lastLevel;
     }
 }

@@ -75,6 +75,7 @@ public class LevelBuilder : MonoBehaviour
 
         BuildTileLayer(tileLayerArray, ref builtLevel);
         BuildPropLayer(propLayerArray, ref builtLevel);
+        BuildDecalLayer(decalLayerArray, ref builtLevel);
 
         Level builtLevelScript = builtLevel.GetComponent<Level>();
         builtLevelScript.SetEnteranceExit(levelEnterance, levelExit);
@@ -87,6 +88,7 @@ public class LevelBuilder : MonoBehaviour
 
         int correctedY = LAYER_HEIGHT - 1;
 
+        //TODO remove this :D
         Level levelScript = _level.GetComponent<Level>();
         
         for (int i = 0; i < LAYER_HEIGHT; i++) {
@@ -132,6 +134,85 @@ public class LevelBuilder : MonoBehaviour
         }
     }
 
+    private void BuildDecalLayer(int[ , ] _decalLayerArray, ref GameObject _level) {
+
+        int correctedY = LAYER_HEIGHT - 1;
+
+
+
+        for(int i = 0; i < LAYER_HEIGHT; i++) {
+
+            for(int j = 0; j < LEVEL_DATA_WIDTH; j++) {
+
+                switch(_decalLayerArray[ i, j ]) {
+
+                    case LevelObjectLookup.BLANK_TILE:
+
+                        CreateGameObject(LevelObjectLookup.BLANK_DECAL_PATH, "Blank", j, correctedY, ref _level, false, false, true, false);
+
+                        break;
+
+                    case LevelObjectLookup.SKELETON:
+
+                        CreateGameObject(LevelObjectLookup.SKELETON_PATH, "Skeleton", j, correctedY, ref _level, false, false, true, false);
+
+                        break;
+
+                    case LevelObjectLookup.SKELETON_PRISONER:
+
+                        CreateGameObject(LevelObjectLookup.SKELETON_PRISONER_PATH, "Skeleton_Prisoner", j, correctedY, ref _level, false, false, true, false);
+
+                        break;
+
+                    case LevelObjectLookup.SKELETON_SKULL:
+
+                        CreateGameObject(LevelObjectLookup.SKELETON_SKULL_PATH, "Skeleton_Skull", j, correctedY, ref _level, false, false, true, false);
+
+                        break;
+
+                    case LevelObjectLookup.WINDOW:
+
+                        CreateGameObject(LevelObjectLookup.WINDOW_PATH, "Window", j, correctedY, ref _level, false, false, true, false);
+
+                        break;
+
+                    case LevelObjectLookup.BLOODY_HAND:
+
+                        CreateGameObject(LevelObjectLookup.BLOODY_HAND_PATH, "Bloody_Hand", j, correctedY, ref _level, false, false, true, false);
+
+                        break;
+
+                    case LevelObjectLookup.BLOODY_FOOT:
+
+                        CreateGameObject(LevelObjectLookup.BLOODY_FOOT_PATH, "Bloody_Foot", j, correctedY, ref _level, false, false, true, false);
+
+                        break;
+
+                    case LevelObjectLookup.TORCH_EAST_WEST:
+
+                        GameObject go = CreateGameObject(LevelObjectLookup.TORCH_EAST_WEST_PATH, "Torch", j, correctedY, ref _level, false, false, true, false);
+
+                        // Left most position
+                        if (j -1 == 0) {
+                            SpriteRenderer sr = go.GetComponent<SpriteRenderer>();
+
+                            sr.flipX = true;
+                        }
+
+                        break;
+
+                    default:
+
+                        CreateGameObject(LevelObjectLookup.BLANK_DECAL_PATH, "Blank", j, correctedY, ref _level, false, false, true, false);
+                        Debug.LogError("LevelBuilder Decale hit default case.");
+
+                        break;
+                }
+            }
+            correctedY--;
+        }
+    }
+
     private void BuildPropLayer(int[ , ] _propLayerArray, ref GameObject _level) {
 
         int leftMostPosition = 0;
@@ -139,6 +220,8 @@ public class LevelBuilder : MonoBehaviour
         int bottomMostPosition = 0;
         int topMostPosition = LAYER_HEIGHT -1;
         int correctedY = LAYER_HEIGHT -1;
+
+        Level currentLevelScript = _level.GetComponent<Level>();
 
         for(int i = 0; i < LAYER_HEIGHT; i++) {
 
@@ -196,19 +279,58 @@ public class LevelBuilder : MonoBehaviour
 
                         break;
 
+                    case LevelObjectLookup.BUILDING:
+
+                        string resourcePathBuilding = "";
+
+                        resourcePathBuilding = GetBuildingType(ref _propLayerArray, j, i);
+
+                        CreateGameObject(resourcePathBuilding, "Building", j, correctedY, ref _level, false, true, false, false);
+
+                        break;
+
+                    case LevelObjectLookup.PRISON_GATE_LEFT:
+
+                        CreateGameObject(LevelObjectLookup.PRISON_GATE_LEFT_PATH, "Prison", j, correctedY, ref _level, false, true, false, false);
+
+                        break;
+
+                    case LevelObjectLookup.PRISON_GATE_RIGHT:
+
+                        CreateGameObject(LevelObjectLookup.PRISON_GATE_RIGHT_PATH, "Prison", j, correctedY, ref _level, false, true, false, false);
+
+                        break;
+
+                    case LevelObjectLookup.PRISON_CORNER_WALL:
+
+                        CreateGameObject(LevelObjectLookup.PRISON_CORNER_WALL_PATH, "Prison", j, correctedY, ref _level, false, true, false, false);
+
+                        break;
+
+                    case LevelObjectLookup.PRISON_WALL:
+
+                        CreateGameObject(LevelObjectLookup.PRISON_WALL_PATH, "Prison", j, correctedY, ref _level, false, true, false, false);
+
+                        break;
+
+                    case LevelObjectLookup.PRISON_WALL_T:
+
+                        CreateGameObject(LevelObjectLookup.PRISON_WALL_T_PATH, "Prison", j, correctedY, ref _level, false, true, false, false);
+
+                        break;
+
                     case LevelObjectLookup.GATE_CLOSED_RIGHT_UP:
 
                         if(northWall || southWall) {
 
-                            CreateGameObject(LevelObjectLookup.GATE_CLOSED_RIGHT_PATH, "Gate", j, correctedY, ref _level, false, true, false, false);
-
+                            GameObject northSouthGate = CreateGameObject(LevelObjectLookup.GATE_CLOSED_RIGHT_PATH, "Gate", j, correctedY, ref _level, false, true, false, false);
                         } else if (eastWall) {
 
-                            CreateGameObject(LevelObjectLookup.GATE_CLOSED_SIDE_PATH, "Gate", j, correctedY, ref _level, false, true, false, false); 
+                            GameObject eastGate = CreateGameObject(LevelObjectLookup.GATE_CLOSED_SIDE_PATH, "Gate", j, correctedY, ref _level, false, true, false, false); 
 
                         } else if (westWall) {
-                            GameObject go = CreateGameObject(LevelObjectLookup.GATE_CLOSED_SIDE_PATH, "Gate", j, correctedY, ref _level, false, true, false, false);
-                            go.transform.Rotate(Vector2.up * 180);
+                            GameObject westGate = CreateGameObject(LevelObjectLookup.GATE_CLOSED_SIDE_PATH, "Gate", j, correctedY, ref _level, false, true, false, false);
+                            westGate.transform.Rotate(Vector2.up * 180);
                         }
 
                         break;
@@ -216,16 +338,55 @@ public class LevelBuilder : MonoBehaviour
                     case LevelObjectLookup.GATE_CLOSED_LEFT_DOWN:
 
                         if(northWall || southWall) {
-                            CreateGameObject(LevelObjectLookup.GATE_CLOSED_LEFT_PATH, "Wall", j, correctedY, ref _level, false, true, false, false);
+
+                            CreateGameObject(LevelObjectLookup.GATE_CLOSED_LEFT_PATH, "Gate", j, correctedY, ref _level, false, true, false, false);
+
                         } else if(eastWall) {
 
                             CreateGameObject(LevelObjectLookup.GATE_CLOSED_SIDE_PATH, "Gate", j, correctedY, ref _level, false, true, false, false);
 
                         } else if(westWall) {
+
                             GameObject go = CreateGameObject(LevelObjectLookup.GATE_CLOSED_SIDE_PATH, "Gate", j, correctedY, ref _level, false, true, false, false);
                             go.transform.Rotate(Vector2.up * 180);
+
                         }
 
+
+                        break;
+
+                    case LevelObjectLookup.GATE_OPEN_LEFT_UP:
+
+                        if(northWall || southWall) {
+
+                            CreateGameObject(LevelObjectLookup.GATE_OPEN_LEFT_UP_PATH, "Gate", j, correctedY, ref _level, false, true, false, false);
+
+                        } else if(eastWall) {
+
+                            CreateGameObject(LevelObjectLookup.GATE_OPEN_SIDE, "Gate", j, correctedY, ref _level, false, true, false, false);
+
+                        } else if(westWall) {
+
+                            CreateGameObject(LevelObjectLookup.GATE_OPEN_SIDE, "Gate", j, correctedY, ref _level, false, true, false, false);
+
+                        }
+
+                        break;
+
+                    case LevelObjectLookup.GATE_OPEN_RIGHT_UP:
+
+                        if (northWall || southWall) {
+
+                            CreateGameObject(LevelObjectLookup.GATE_OPEN_RIGHT_UP_PATH, "Gate", j, correctedY, ref _level, false, true, false, false);
+
+                        } else if (eastWall) {
+
+                            CreateGameObject(LevelObjectLookup.GATE_OPEN_SIDE, "Gate", j, correctedY, ref _level, false, true, false, false);
+
+                        } else if (westWall) {
+
+                            CreateGameObject(LevelObjectLookup.GATE_OPEN_SIDE, "Gate", j, correctedY, ref _level, false, true, false, false);
+                        }
 
                         break;
 
@@ -312,8 +473,11 @@ public class LevelBuilder : MonoBehaviour
             prop.SetIsBlank(_isBlank);
             prop.SetXY(_x, _y);
             prop.SetStartingInfo(prop.transform.position, _x, _y);
-        } else if(_isDecal)
+        } else if(_isDecal) {
             levelScript.decalLayer[ _y, _x ] = go;
+            Decal decal = go.GetComponent<Decal>();
+            decal.SetXY(_x, _y); 
+        }
 
         return go;
     }
@@ -531,6 +695,70 @@ public class LevelBuilder : MonoBehaviour
         else {
             resourcePath = LevelObjectLookup.HOLE_PATH;
             return resourcePath;
+        }
+
+        return resourcePath;
+    }
+
+    private string GetBuildingType (ref int[,] _propLayer, int _x, int _y) {
+
+        int building = LevelObjectLookup.BUILDING;
+
+        int top = _propLayer[_y - 1, _x];
+        int bottom = _propLayer[_y + 1, _x];
+        int left = _propLayer[_y, _x - 1];
+        int right = _propLayer[_y, _x + 1];
+        int topRight = _propLayer[_y  - 1, _x + 1];
+        int topLeft = _propLayer[_y  - 1, _x -1];
+        int bottomRight = _propLayer[_y + 1, _x + 1];
+        int bottomLeft = _propLayer[_y + 1, _x - 1];
+
+        string resourcePath = "";
+
+        // Ceiling Left Corner
+        if (right == building && bottom == building && top != building && left != building) {
+            resourcePath = LevelObjectLookup.CEILING_LEFT_CORNER_PATH;
+            return resourcePath;
+        } 
+        // Ceiling Top
+        else if (left == building && right == building && top != building) {
+            resourcePath = LevelObjectLookup.CEILING_TOP_PATH;
+            return resourcePath;
+        } 
+        // Ceiling Right Corner
+        else if (left == building && bottom == building && top != building && right != building) {
+            resourcePath = LevelObjectLookup.CEILING_RIGHT_CORNER_PATH;
+            return resourcePath;
+        }
+        // Ceiling Left
+        else if (top == building && bottom == building && left != building) {
+            resourcePath = LevelObjectLookup.CEILING_LEFT_PATH;
+            return resourcePath;
+        }
+        // Ceiling Right
+        else if (top == building && bottom == building && right != building) {
+            resourcePath = LevelObjectLookup.CEILING_RIGHT_PATH;
+            return resourcePath;
+        }
+        // Ceiling Bottom Left Corner
+        else if (top == building && right == building && left != building && bottom != building) {
+            resourcePath = LevelObjectLookup.CEILING_BOTTOM_PATH;
+            return resourcePath;
+        }
+        // Ceiling Bottom Right Corner
+        else if (top == building && left == building && right != building && bottom != building) {
+            resourcePath = LevelObjectLookup.CEILING_BOTTOM_PATH;
+            return resourcePath;
+        }
+        // Ceiling Bottom 
+        else if (left == building && right == building && bottom != building) {
+            resourcePath = LevelObjectLookup.CEILING_BOTTOM_PATH;
+            return resourcePath;
+        }
+        // Ceiling Center
+        else if (left == building && right == building && top == building && bottom == building) {
+            resourcePath = LevelObjectLookup.CEILING_CENTER_PATH;
+            return resourcePath; 
         }
 
         return resourcePath;

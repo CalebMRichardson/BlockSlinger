@@ -11,12 +11,21 @@ public class LevelSelectionNode : MonoBehaviour
     [SerializeField]
     private bool locked;
 
+    public GameObject lockObj;
+    private SpriteRenderer lockSR;
+
     private const int LEFT_MOUSE_BUTTON = 0;
 
     private void Start() {
 
         if (levelSelectionManager == null) {
             Debug.LogError("LevelSelectionManager.cs is null.");
+        }
+
+        if (lockObj == null) {
+            Debug.LogError("Lock GameObject is null");
+        } else {
+            lockSR = lockObj.GetComponent<SpriteRenderer>();
         }
 
         UpdateLockedStatus();
@@ -105,6 +114,8 @@ public class LevelSelectionNode : MonoBehaviour
         } else {
             Lock();
         }
+
+        lockSR.enabled = locked;
     }
 
     public void Unlock() {

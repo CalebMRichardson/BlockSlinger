@@ -7,7 +7,6 @@ public class Prop : MonoBehaviour
     public bool isBlank;
     public bool isHole;
     public bool isTrap;
-    [SerializeField]
     public int x, y;
 
     protected Vector2 startingPos; 

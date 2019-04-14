@@ -10,7 +10,7 @@ public class Block : Prop
     private bool blockInGoal;
     public Vector2 lastPosition;
     public Animator animator;
-    private float destroyAnimationDelay; 
+    private float destroyAnimationDelay;
 
     private void Start() {
         blockAudio = GetComponent<BlockAudio>();
@@ -29,6 +29,7 @@ public class Block : Prop
         if (tile.IsGoalTile()) {
             inGoal = true;
             tile.SetIsGoalTileComplete(inGoal);
+            AudioManager.PlaySingle(blockAudio.GetBlockInGoalSFX());
         }
 
         return inGoal;
@@ -43,7 +44,11 @@ public class Block : Prop
     }
 
     public void PlayBlockInGoalSFX() {
-        //AudioManager.PlaySingleAtVolume(blockAudio.GetBlockInGoalSFX(), 0.1f);
+        AudioManager.PlaySingle(blockAudio.GetBlockInGoalSFX());
+    }
+
+    public void PlayFallSFX() {
+        AudioManager.PlaySingle(blockAudio.GetFallSFX());
     }
 
     public GameObject GetCurrentLevel() {

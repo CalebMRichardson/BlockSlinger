@@ -28,8 +28,6 @@ public class LevelSelectionManager : MonoBehaviour
             PlayerPrefs.Save();
 
         }
-
-        print("Level Index: " + PlayerPrefs.GetInt(LevelManager.MAX_LEVEL_INDEX));
     }
 
     private void Start() {

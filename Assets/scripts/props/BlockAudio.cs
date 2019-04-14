@@ -11,6 +11,7 @@ public class BlockAudio : MonoBehaviour
     private AudioClip[] hitSFXCollection; 
     private AudioClip shootSFX;
     private AudioClip blockInGoalSFX;
+    private AudioClip fallSFX;
 
     private void Start() {
 
@@ -46,6 +47,11 @@ public class BlockAudio : MonoBehaviour
         if (blockInGoalSFX == null) {
             Debug.LogError("BlockInGoalSFX is null. " + LevelObjectLookup.BLOCK_IN_GOAL_SFX);
         }
+
+        fallSFX = Resources.Load(LevelObjectLookup.FALL_SFX) as AudioClip;
+        if (fallSFX == null) {
+            Debug.LogError("FallSFX is null."); 
+        }
     }
 
     public AudioClip[] GetHitCollectionSFX() {
@@ -58,5 +64,9 @@ public class BlockAudio : MonoBehaviour
 
     public AudioClip GetBlockInGoalSFX() {
         return blockInGoalSFX;
+    }
+
+    public AudioClip GetFallSFX() {
+        return fallSFX; 
     }
 }

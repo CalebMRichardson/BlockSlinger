@@ -15,15 +15,11 @@ public class LevelManager : MonoBehaviour
     private Vector2 currentLevelPos;
     [SerializeField]
     private CameraMovement cameraMovement;
+    public LevelSelectionManager levelSelectionManager; 
     public static string MAX_LEVEL_INDEX = "MAX_LEVEL_INDEX";
 
-    public GameObject northSouthHall;
-    public GameObject eastWestHall;
-    
-    [SerializeField]
-    private float northSouthHallHeight;
-    [SerializeField]
-    private float eastWestHallWidth; 
+    // Size of a 512x512 in unity units
+    private float hallSizeOffset = 5.12f; 
 
     //TODO read from file
     private int currentLevelIndex;
@@ -39,15 +35,6 @@ public class LevelManager : MonoBehaviour
 
     private void Start() {
         cameraMovement = Camera.main.GetComponent<CameraMovement>();
-
-        SpriteRenderer sr = northSouthHall.transform.GetChild(0).GetComponent<SpriteRenderer>();
-
-        northSouthHallHeight = sr.size.y;
-
-        sr = eastWestHall.transform.GetChild(0).GetComponent<SpriteRenderer>();
-
-        eastWestHallWidth = sr.size.x; 
-
     }
 
     public void LoadCurrentLevel() {
@@ -56,7 +43,6 @@ public class LevelManager : MonoBehaviour
         currentLevel.transform.parent = gameObject.transform;
         currentLevelScript = currentLevel.GetComponent<Level>();
         currentLevelScript.SetIsCurrentLevel(true);
-        //FocusCameraOnCurrentLevel();
         cameraMovement.SetCameraPos(currentLevelScript.GetCameraFocus());
         nextLevel = LoadNextLevel();
     }
@@ -92,9 +78,6 @@ public class LevelManager : MonoBehaviour
 
         Level nextLvlScript = _nextLvl.GetComponent<Level>();
 
-        //float offsetX = _nextLvl.transform.position.x - nextLvlScript.GetLevelEnterancePos().x;
-        //float offsetY = _nextLvl.transform.position.y - nextLvlScript.GetLevelEnterancePos().y; 
-
         float offsetX = 0;
         float offsetY = 0;
 
@@ -103,33 +86,29 @@ public class LevelManager : MonoBehaviour
             offsetX = _nextLvl.transform.position.x - nextLvlScript.GetLevelEnterancePos(true).x;
             offsetY = _nextLvl.transform.position.y - nextLvlScript.GetLevelEnterancePos(true).y;
             nextLevelPos = currentLevelScript.GetLevelExitPos(true);
-            offsetY -= 5;
-            //TODO get reference to Hallways and move it by -sr.size.y
+            offsetY -= hallSizeOffset;
 
         } else if (nextLvlScript.IsSouthEnterance()) {
             
             offsetX = _nextLvl.transform.position.x - nextLvlScript.GetLevelEnterancePos(true).x;
             offsetY = _nextLvl.transform.position.y - nextLvlScript.GetLevelEnterancePos(true).y;
             nextLevelPos = currentLevelScript.GetLevelExitPos(true);
-            offsetY += 5;
-            //TODO get reference to Hallways and move it by +sr.size.y
+            offsetY += hallSizeOffset;
 
         } else if (nextLvlScript.IsWestEnterance()) {
             
             offsetX = _nextLvl.transform.position.x - nextLvlScript.GetLevelEnterancePos(false).x;
             offsetY = _nextLvl.transform.position.y - nextLvlScript.GetLevelEnterancePos(false).y;
             nextLevelPos = currentLevelScript.GetLevelExitPos(false);
-            offsetX += 5;
+            offsetX += hallSizeOffset;
 
         } else if (nextLvlScript.IsEastEnterance()) {
             
             offsetX = _nextLvl.transform.position.x - nextLvlScript.GetLevelEnterancePos(false).x;
             offsetY = _nextLvl.transform.position.y - nextLvlScript.GetLevelEnterancePos(false).y;
             nextLevelPos = currentLevelScript.GetLevelExitPos(false);
-            offsetX -= 5;
+            offsetX -= hallSizeOffset;
         }
-
-        //nextLevelPos = currentLevelScript.GetLevelExitPos();
 
         nextLevelPos.x += offsetX;
         nextLevelPos.y += offsetY; 
@@ -143,6 +122,20 @@ public class LevelManager : MonoBehaviour
             Destroy(lastLevel);
         }
 
+        if (currentLevelScript.IsLastLevel()) {
+            GameStateManager.instance.gameState = GameStateManager.GameState.LEVEL_SELECTION;
+
+            SaveLevelProgress(currentLevelScript.GetLevelIndex());
+
+            levelSelectionManager.LevelSelctionEnable();
+
+            print(PlayerPrefs.GetInt(MAX_LEVEL_INDEX));
+
+            return;
+        }
+
+        currentLevelScript.PlayGateAnimations();
+        
         lastLevel = currentLevel;
 
         Level lastLevelScript = lastLevel.GetComponent<Level>();
@@ -154,7 +147,6 @@ public class LevelManager : MonoBehaviour
         FocusCameraOnCurrentLevel();
 
         nextLevel = LoadNextLevel();
-
     }
 
     public void FocusCameraOnCurrentLevel() {

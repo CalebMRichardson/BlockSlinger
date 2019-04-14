@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3451141249223305962}
   - component: {fileID: 6240285713307692974}
-  - component: {fileID: 8248154929925400469}
+  - component: {fileID: 4518741255242789682}
+  - component: {fileID: 9157560024593156182}
   m_Layer: 0
   m_Name: gateClosedRight
   m_TagString: Untagged
@@ -80,7 +81,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8248154929925400469
+--- !u!95 &4518741255242789682
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065023575139563646}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cc44442e85f346240b3bc571cf624e35, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &9157560024593156182
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,7 +109,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1065023575139563646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 076ff52ae708f9043b1d0864d0299f47, type: 3}
+  m_Script: {fileID: 11500000, guid: 51ffcf5eff54b8548a449e9477e94a13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isBlank: 0
@@ -97,3 +117,4 @@ MonoBehaviour:
   isTrap: 0
   x: 0
   y: 0
+  exitGate: 1

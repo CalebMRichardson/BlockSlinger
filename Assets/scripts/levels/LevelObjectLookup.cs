@@ -29,11 +29,34 @@ public static class LevelObjectLookup
     public const string WALL_NS_PATH                          = "prefabs/walls/wallNS";
     public const string WALL_EW_PATH                          = "prefabs/walls/wallEW";
     public const string WALL_SOUTH_CORNER_PATH                = "prefabs/walls/wallSouthCorner";
+    public const int BUILDING                                 = 410;
+    public const string CEILING_LEFT_CORNER_PATH              = "prefabs/walls/ceilingLeftCorner";
+    public const string CEILING_TOP_PATH                      = "prefabs/walls/ceilingTop";
+    public const string CEILING_RIGHT_CORNER_PATH             = "prefabs/walls/ceilingRightCorner";
+    public const string CEILING_LEFT_PATH                     = "prefabs/walls/ceilingLeft";
+    public const string CEILING_RIGHT_PATH                    = "prefabs/walls/ceilingRight";
+    public const string CEILING_BOTTOM_PATH                   = "prefabs/walls/ceilingBottom";
+    public const string CEILING_CENTER_PATH                   = "prefabs/walls/ceilingCenter";
+    public const int PRISON_GATE_LEFT                         = 415;
+    public const string PRISON_GATE_LEFT_PATH                 = "prefabs/walls/prisonGateLeft";
+    public const int PRISON_GATE_RIGHT                        = 416; 
+    public const string PRISON_GATE_RIGHT_PATH                = "prefabs/walls/prisonGateRight";
+    public const int PRISON_CORNER_WALL                       = 417;
+    public const string PRISON_CORNER_WALL_PATH               = "prefabs/walls/prisonWallCorner"; 
+    public const int PRISON_WALL                              = 418;
+    public const string PRISON_WALL_PATH                      = "prefabs/walls/prisonWall";
+    public const int PRISON_WALL_T                            = 419;
+    public const string PRISON_WALL_T_PATH                    = "prefabs/walls/prisonWallT";
     public const int GATE_CLOSED_LEFT_DOWN                    = 450;
     public const string GATE_CLOSED_LEFT_PATH                 = "prefabs/walls/gateClosedLeft";
     public const int GATE_CLOSED_RIGHT_UP                     = 451;
     public const string GATE_CLOSED_RIGHT_PATH                = "prefabs/walls/gateClosedRight";
     public const string GATE_CLOSED_SIDE_PATH                 = "prefabs/walls/gateClosedSide";
+    public const int GATE_OPEN_RIGHT_UP                       = 452;
+    public const string GATE_OPEN_RIGHT_UP_PATH               = "prefabs/walls/gateOpenRight";
+    public const string GATE_OPEN_SIDE                        = "prefabs/walls/gateSideOpen";
+    public const int GATE_OPEN_LEFT_UP                        = 453;
+    public const string GATE_OPEN_LEFT_UP_PATH                = "prefabs/walls/gateOpenLeft";
     public const string HALLWAY_NS_PATH                       = "prefabs/walls/hallwayNS";
     public const string HALLWAY_EW_PATH                       = "prefabs/walls/hallwayEW";
 
@@ -83,12 +106,35 @@ public static class LevelObjectLookup
     public const int TRAP_WEST                                = 603;
     public const string TRAP_PATH                             = "prefabs/obstacles/trapObstacle";
 
+    // DECALS
+
+    public const int SKELETON                                 = 800;
+    public const string SKELETON_PATH                         = "prefabs/decals/skeleton";
+    public const int SKELETON_PRISONER                        = 801;
+    public const string SKELETON_PRISONER_PATH                = "prefabs/decals/skeletonPrisoner";
+    public const int SKELETON_SKULL                           = 803;
+    public const string SKELETON_SKULL_PATH                   = "prefabs/decals/skull";
+    public const int WINDOW                                   = 810;
+    public const string WINDOW_PATH                           = "prefabs/decals/window";
+    public const int BLOODY_HAND                              = 820;
+    public const string BLOODY_HAND_PATH                      = "prefabs/decals/bloodyHand";
+    public const int BLOODY_FOOT                              = 821;
+    public const string BLOODY_FOOT_PATH                      = "prefabs/decals/bloodyFoot";
+    public const int TORCH_EAST_WEST                          = 830;
+    public const string TORCH_EAST_WEST_PATH                  = "prefabs/decals/torchEastWest";
+    public const string BLANK_DECAL_PATH                      = "prefabs/decals/blank";
+
     // AUDIO
 
     public const string BLOCK_HIT_ONE_SFX                     = "sound/fx/BlockHitOne";
     public const string BLOCK_HIT_TWO_SFX                     = "sound/fx/BlockHitTwo";
     public const string BLOCK_HIT_THREE_SFX                   = "sound/fx/BlockHitThree";     
     public const string BLOCK_SHOOT_SFX                       = "sound/fx/Swoosh";
-    public const string BLOCK_IN_GOAL_SFX                     = "sound/fx/Party-blower";
+    public const string BLOCK_IN_GOAL_SFX                     = "sound/fx/Goal";
     public const string CAMERA_SWOOSH                         = "sound/fx/cameraSwoosh";
+    public const string BUTTON_CLICK_SFX                      = "sound/fx/click";
+    public const string TRAP_SFX                              = "sound/fx/Trap";
+    public const string FALL_SFX                              = "sound/fx/fallSound";
+    public const string GATE_DOWN_SFX                         = "sound/fx/Gate";
+
 }

@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 9044763914483454281}
   - component: {fileID: 5913607513202851295}
-  - component: {fileID: 5439469951027443110}
+  - component: {fileID: 1318768288271874478}
+  - component: {fileID: 3178769083851699727}
   m_Layer: 0
-  m_Name: gateSide
+  m_Name: gateClosedSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +81,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5439469951027443110
+--- !u!114 &1318768288271874478
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,7 +90,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5026003200830982852}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 076ff52ae708f9043b1d0864d0299f47, type: 3}
+  m_Script: {fileID: 11500000, guid: 51ffcf5eff54b8548a449e9477e94a13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isBlank: 0
@@ -97,3 +98,23 @@ MonoBehaviour:
   isTrap: 0
   x: 0
   y: 0
+  exitGate: 1
+--- !u!95 &3178769083851699727
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5026003200830982852}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 14bba0d85787c224791d9ea0a5081be0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

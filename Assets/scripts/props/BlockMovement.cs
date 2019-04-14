@@ -78,10 +78,12 @@ public class BlockMovement : MonoBehaviour
                     currentLevelScript.propLayer[ nextPropScript.y, nextPropScript.x ] = block.gameObject;
                     UpdateBoardOfMovedBlock(ref nextPropScript);
                     moveState = MoveState.IDLE;
+                    block.PlayRandomHitSFX();
 
                 } else if (nextPropScript.isHole) {
 
                     block.PlayAnimationAndDestroy("block_fall");
+                    block.PlayFallSFX();
                     UpdateBoardOfMovedBlock(ref nextPropScript);
                     moveState = MoveState.IDLE;
 
@@ -92,6 +94,7 @@ public class BlockMovement : MonoBehaviour
                     UpdateBoardOfMovedBlock(ref nextPropScript);
                     moveState = MoveState.TRYING_TO_MOVE;
                     moveHappend = false;
+                    trapScript.PlayTrapSoundFX();
                     trapScript.PlayTriggerAnimation("trap_trigger");
                     break;
                 }
@@ -295,18 +298,21 @@ public class BlockMovement : MonoBehaviour
                 moveHappend = true;
                 nextProp = testProp;
                 moveState = MoveState.MOVING;
+                block.PlayShootSFX();
 
             } else if(testPropScript.isTrap) {
 
                 moveHappend = true;
                 nextProp = testProp;
                 moveState = MoveState.MOVING;
+                block.PlayShootSFX();
 
             } else {
 
                 if(moveHappend) {
 
                     moveState = MoveState.MOVING;
+                    block.PlayShootSFX();
 
                 } else {
 

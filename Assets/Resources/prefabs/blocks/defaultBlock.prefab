@@ -103,6 +103,7 @@ MonoBehaviour:
   y: 0
   lastPosition: {x: 0, y: 0}
   animator: {fileID: 4094917321095169525}
+  blockInGoalSprite: {fileID: 21300000, guid: 1139d3b2cf1510848974aece92a17b63, type: 3}
 --- !u!61 &7014805418689782798
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -172,6 +173,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bc1ae3fe93d1b545a0a398d4090a0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDirection: {x: 0, y: 0}
   moveState: 0
   nextProp: {fileID: 0}

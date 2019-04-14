@@ -24,12 +24,15 @@ public class CameraMovement : MonoBehaviour
     private enum CameraState { IDLE, MOVING_TO_NEXT_POSITION }
     private CameraState cameraState;
 
-    private CameraAudio cameraAudio; 
+    private CameraAudio cameraAudio;
+
+    private bool playedSwoosh; 
 
     public void Start() {
         Input.gyro.enabled = true;
         cameraState = CameraState.IDLE;
         cameraAudio = GetComponent<CameraAudio>();
+        playedSwoosh = false;
     }
 
     public void SetCamPos(Vector2 _camPos) {
@@ -47,6 +50,7 @@ public class CameraMovement : MonoBehaviour
 
             case CameraState.IDLE:
                 GyroMovement();
+                playedSwoosh = false;
                 break;
             case CameraState.MOVING_TO_NEXT_POSITION:
                 Move();
@@ -74,15 +78,19 @@ public class CameraMovement : MonoBehaviour
         camPos.z = -10;
 
         StartCoroutine("IncreaseCameraSpeed");
-
-        AudioManager.PlaySingleAtVolume(cameraAudio.GetSwooshSFX(), .7f);
     }
 
     private IEnumerator IncreaseCameraSpeed() {
 
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(1.0f);
+
+        if(!playedSwoosh) {
+            AudioManager.PlaySingleAtVolume(cameraAudio.GetSwooshSFX(), .7f);
+            playedSwoosh = true;
+        }
 
         camSpeed = MAX_CAM_SPEED;
+
     }
     private void Move() {
 
