@@ -44,7 +44,7 @@ public class Block : Prop
     }
 
     public void PlayBlockInGoalSFX() {
-        AudioManager.PlaySingle(blockAudio.GetBlockInGoalSFX());
+        AudioManager.PlaySingleAtVolume(blockAudio.GetBlockInGoalSFX(), 1f);
     }
 
     public void PlayFallSFX() {

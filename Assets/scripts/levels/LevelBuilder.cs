@@ -319,6 +319,12 @@ public class LevelBuilder : MonoBehaviour
 
                         break;
 
+                    case LevelObjectLookup.PRISON_WALL_NS:
+
+                        CreateGameObject(LevelObjectLookup.PRISON_WALL_NS_PATH, "Prison", j, correctedY, ref _level, false, true, false, false);
+
+                        break;
+
                     case LevelObjectLookup.GATE_CLOSED_RIGHT_UP:
 
                         if(northWall || southWall) {

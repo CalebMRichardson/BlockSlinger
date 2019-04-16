@@ -47,6 +47,8 @@ public static class LevelObjectLookup
     public const string PRISON_WALL_PATH                      = "prefabs/walls/prisonWall";
     public const int PRISON_WALL_T                            = 419;
     public const string PRISON_WALL_T_PATH                    = "prefabs/walls/prisonWallT";
+    public const int PRISON_WALL_NS                           = 420;
+    public const string PRISON_WALL_NS_PATH                   = "prefabs/walls/prisonWallNS";
     public const int GATE_CLOSED_LEFT_DOWN                    = 450;
     public const string GATE_CLOSED_LEFT_PATH                 = "prefabs/walls/gateClosedLeft";
     public const int GATE_CLOSED_RIGHT_UP                     = 451;

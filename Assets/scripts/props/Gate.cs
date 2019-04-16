@@ -29,7 +29,7 @@ public class Gate : Prop
     }
 
     public void PlayGateSFX() {
-        AudioManager.PlaySingleAtVolume(gateDownSFX, .3f);
+        // AudioManager.PlaySingleAtVolume(gateDownSFX, .3f);
     }
 
 }

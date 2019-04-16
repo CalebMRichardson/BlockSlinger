@@ -149,7 +149,8 @@ public class Level : MonoBehaviour {
         bool southExit = levelExit[ 0 ] == 0;
         bool eastExit  = levelExit[ 1 ] == LEVEL_DATA_WIDTH - 1;
         bool westExit  = levelExit[ 1 ] == 0;
-        float northSouthOffset = 0.63f; 
+        float northSouthOffset = 0.63f;
+        float hallSizeOffset = 5.12f; 
 
         if (northExit || southExit) {
 
@@ -160,7 +161,7 @@ public class Level : MonoBehaviour {
             if (northExit) {
                 yPos += northSouthOffset;
             } else if (southExit) {
-                yPos -= northSouthOffset; 
+                yPos -= (hallSizeOffset - northSouthOffset); 
             }
 
             nHallway.transform.position = new Vector2(xPos, yPos);
