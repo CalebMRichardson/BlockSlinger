@@ -44,7 +44,8 @@ public class LevelManager : MonoBehaviour
         currentLevelScript = currentLevel.GetComponent<Level>();
         currentLevelScript.SetIsCurrentLevel(true);
         cameraMovement.SetCameraPos(currentLevelScript.GetCameraFocus());
-        nextLevel = LoadNextLevel();
+        if (currentLevelIndex < 25)
+            nextLevel = LoadNextLevel();
     }
 
     public void SetCurrentLevelIndex(int _currentLevelIndex) {
@@ -157,10 +158,18 @@ public class LevelManager : MonoBehaviour
     }
 
     private void Update() {
-        
+
         if (currentLevelScript.IsLevelComplete()) {
-            IncrementCurrentLevel();
-            SaveLevelProgress(currentLevelScript.GetLevelIndex());
+
+            print("DONE");
+
+            if(!currentLevelScript.IsLastLevel()) {
+                IncrementCurrentLevel();
+                SaveLevelProgress(currentLevelScript.GetLevelIndex());
+            } else {
+                levelSelectionManager.LevelSelctionEnable();
+                print("CALLED");
+            }
         }
     }
 

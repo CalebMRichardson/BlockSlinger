@@ -45,6 +45,11 @@ public class LevelBuilder : MonoBehaviour
             return null; 
         }
 
+        if (currentLevel > 25) {
+            Debug.LogError("Current Level is more then max levels: " + currentLevel);
+            return null;
+        }
+
         // used to find the level name by combining LEVEL with currentLevel
         StringBuilder levelKey = new StringBuilder(LEVEL);
         levelKey.Append(currentLevel);
