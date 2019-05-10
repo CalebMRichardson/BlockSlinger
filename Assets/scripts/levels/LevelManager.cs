@@ -130,8 +130,6 @@ public class LevelManager : MonoBehaviour
 
             levelSelectionManager.LevelSelctionEnable();
 
-            print(PlayerPrefs.GetInt(MAX_LEVEL_INDEX));
-
             return;
         }
 
@@ -161,22 +159,24 @@ public class LevelManager : MonoBehaviour
 
         if (currentLevelScript.IsLevelComplete()) {
 
-            print("DONE");
-
             if(!currentLevelScript.IsLastLevel()) {
                 IncrementCurrentLevel();
                 SaveLevelProgress(currentLevelScript.GetLevelIndex());
             } else {
                 levelSelectionManager.LevelSelctionEnable();
-                print("CALLED");
             }
         }
     }
 
     private void SaveLevelProgress(int _levelIndex) {
 
-        PlayerPrefs.SetInt(MAX_LEVEL_INDEX, _levelIndex);
-        PlayerPrefs.Save();
+        int furthestLevel = PlayerPrefs.GetInt(MAX_LEVEL_INDEX);
+
+        if (furthestLevel < _levelIndex)
+        {
+            PlayerPrefs.SetInt(MAX_LEVEL_INDEX, _levelIndex);
+            PlayerPrefs.Save();
+        }
     }
 
     public void ReloadCurrentLevel() {
